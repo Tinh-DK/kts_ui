@@ -11,12 +11,15 @@
               <div>
                 <p class="card-text text-right">Total Revenue</p>
                 <div class="fluid-container">
-                  <h3 class="card-title font-weight-bold text-right mb-0">$65,650</h3>
+                  <h3 class="card-title font-weight-bold text-right mb-0">
+                    $65,650
+                  </h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3">
-              <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+              <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65%
+              lower growth
             </p>
           </div>
         </div>
@@ -31,12 +34,15 @@
               <div>
                 <p class="card-text text-right">Orders</p>
                 <div class="fluid-container">
-                  <h3 class="card-title font-weight-bold text-right mb-0">3455</h3>
+                  <h3 class="card-title font-weight-bold text-right mb-0">
+                    3455
+                  </h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3">
-              <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+              <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i>
+              Product-wise sales
             </p>
           </div>
         </div>
@@ -51,12 +57,15 @@
               <div>
                 <p class="card-text text-right">Sales</p>
                 <div class="fluid-container">
-                  <h3 class="card-title font-weight-bold text-right mb-0">5693</h3>
+                  <h3 class="card-title font-weight-bold text-right mb-0">
+                    5693
+                  </h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3">
-              <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+              <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly
+              Sales
             </p>
           </div>
         </div>
@@ -71,12 +80,15 @@
               <div>
                 <p class="card-text text-right">Employees</p>
                 <div class="fluid-container">
-                  <h3 class="card-title font-weight-bold text-right mb-0">246</h3>
+                  <h3 class="card-title font-weight-bold text-right mb-0">
+                    246
+                  </h3>
                 </div>
               </div>
             </div>
             <p class="text-muted mt-3">
-              <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
+              <i class="mdi mdi-reload mr-1" aria-hidden="true"></i>
+              Product-wise sales
             </p>
           </div>
         </div>
@@ -110,8 +122,16 @@
                     <td>Dispatched</td>
                     <td>Credit card</td>
                     <td><label class="badge badge-teal">Approved</label></td>
-                    <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                    <td>
+                      <a href="#" class="btn btn-outline-success btn-sm"
+                        >View Order</a
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-outline-danger btn-sm"
+                        >Cancel</a
+                      >
+                    </td>
                   </tr>
                   <tr>
                     <td>035</td>
@@ -120,8 +140,16 @@
                     <td>Dispatched</td>
                     <td>Internet banking</td>
                     <td><label class="badge badge-warning">Pending</label></td>
-                    <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                    <td>
+                      <a href="#" class="btn btn-outline-success btn-sm"
+                        >View Order</a
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-outline-danger btn-sm"
+                        >Cancel</a
+                      >
+                    </td>
                   </tr>
                   <tr>
                     <td>036</td>
@@ -130,8 +158,16 @@
                     <td>Dispatched</td>
                     <td>Credit card</td>
                     <td><label class="badge badge-teal">Approved</label></td>
-                    <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                    <td>
+                      <a href="#" class="btn btn-outline-success btn-sm"
+                        >View Order</a
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-outline-danger btn-sm"
+                        >Cancel</a
+                      >
+                    </td>
                   </tr>
                   <tr>
                     <td>037</td>
@@ -140,8 +176,16 @@
                     <td>Dispatched</td>
                     <td>Cash on delivery</td>
                     <td><label class="badge badge-danger">Rejected</label></td>
-                    <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                    <td>
+                      <a href="#" class="btn btn-outline-success btn-sm"
+                        >View Order</a
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-outline-danger btn-sm"
+                        >Cancel</a
+                      >
+                    </td>
                   </tr>
                   <tr>
                     <td>038</td>
@@ -150,8 +194,16 @@
                     <td>Dispatched</td>
                     <td>Debit card</td>
                     <td><label class="badge badge-teal">Approved</label></td>
-                    <td><a href="#" class="btn btn-outline-success btn-sm">View Order</a></td>
-                    <td><a href="#" class="btn btn-outline-danger btn-sm">Cancel</a></td>
+                    <td>
+                      <a href="#" class="btn btn-outline-success btn-sm"
+                        >View Order</a
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-outline-danger btn-sm"
+                        >Cancel</a
+                      >
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -168,15 +220,26 @@
             <div class="fluid-container">
               <div class="row ticket-card mt-3 pb-2 border-bottom">
                 <div class="col-md-1">
-                  <img class="img-sm rounded-circle mb-2 mb-md-0" src="../assets/images/faces/face1.jpg" alt="profile image">
+                  <img
+                    class="img-sm rounded-circle mb-2 mb-md-0"
+                    src="../assets/images/faces/face1.jpg"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">James :</p>
+                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">
+                      James :
+                    </p>
                     <p class="font-weight-medium mr-1 mb-0">[#23047]</p>
-                    <p class="font-weight-bold mb-0 ellipsis">Lorem ipsum dolor sit amet, consectetur.</p>
+                    <p class="font-weight-bold mb-0 ellipsis">
+                      Lorem ipsum dolor sit amet, consectetur.
+                    </p>
                   </div>
-                  <p class="text-small text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum sequi a, nostrum.</p>
+                  <p class="text-small text-gray">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Illum sequi a, nostrum.
+                  </p>
                   <div class="row text-muted d-flex mb-2 mb-md-0">
                     <div class="col-xl-4 d-sm-flex">
                       <p class="mb-0 mr-2">Last responded :</p>
@@ -190,30 +253,58 @@
                 </div>
                 <div class="ticket-actions col-md-2">
                   <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-teal dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      class="btn btn-teal dropdown-toggle btn-sm"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Manage
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-reply fa-fw"></i>Quick reply</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-history fa-fw"></i>Another action</a
+                      >
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-check text-success fa-fw"></i>Resolve
+                        Issue</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-times text-danger fa-fw"></i>Close
+                        Issue</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row ticket-card mt-3 pb-2 border-bottom">
                 <div class="col-md-1">
-                  <img class="img-sm rounded-circle mb-2 mb-md-0" src="../assets/images/faces/face2.jpg" alt="profile image">
+                  <img
+                    class="img-sm rounded-circle mb-2 mb-md-0"
+                    src="../assets/images/faces/face2.jpg"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">Stella :</p>
+                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">
+                      Stella :
+                    </p>
                     <p class="font-weight-medium mr-1 mb-0">[#23135]</p>
-                    <p class="font-weight-bold mb-0 ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente.</p>
+                    <p class="font-weight-bold mb-0 ellipsis">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Sapiente.
+                    </p>
                   </div>
-                  <p class="text-small text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptates fuga quae?</p>
+                  <p class="text-small text-gray">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Excepturi voluptates fuga quae?
+                  </p>
                   <div class="row text-muted d-flex mb-2 mb-md-0">
                     <div class="col-xl-4 d-sm-flex">
                       <p class="mb-0 mr-2">Last responded :</p>
@@ -227,30 +318,56 @@
                 </div>
                 <div class="ticket-actions col-md-2">
                   <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-teal dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      class="btn btn-teal dropdown-toggle btn-sm"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Manage
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-reply fa-fw"></i>Quick reply</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-history fa-fw"></i>Another action</a
+                      >
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-check text-success fa-fw"></i>Resolve
+                        Issue</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-times text-danger fa-fw"></i>Close
+                        Issue</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row ticket-card mt-3 pb-2 border-bottom">
                 <div class="col-md-1">
-                  <img class="img-sm rounded-circle mb-2 mb-md-0" src="../assets/images/faces/face3.jpg" alt="profile image">
+                  <img
+                    class="img-sm rounded-circle mb-2 mb-md-0"
+                    src="../assets/images/faces/face3.jpg"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">John Doe :</p>
+                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">
+                      John Doe :
+                    </p>
                     <p class="font-weight-medium mr-1 mb-0">[#23246]</p>
-                    <p class="font-weight-bold mb-0 ellipsis">Lorem ipsum dolor sit amet.</p>
+                    <p class="font-weight-bold mb-0 ellipsis">
+                      Lorem ipsum dolor sit amet.
+                    </p>
                   </div>
-                  <p class="text-small text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p class="text-small text-gray">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
                   <div class="row text-muted d-flex mb-2 mb-md-0">
                     <div class="col-xl-4 d-sm-flex">
                       <p class="mb-0 mr-2">Last responded :</p>
@@ -264,30 +381,57 @@
                 </div>
                 <div class="ticket-actions col-md-2">
                   <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-teal dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      class="btn btn-teal dropdown-toggle btn-sm"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Manage
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-reply fa-fw"></i>Quick reply</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-history fa-fw"></i>Another action</a
+                      >
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-check text-success fa-fw"></i>Resolve
+                        Issue</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-times text-danger fa-fw"></i>Close
+                        Issue</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row ticket-card mt-3 pb-2 border-bottom">
                 <div class="col-md-1">
-                  <img class="img-sm rounded-circle mb-2 mb-md-0" src="../assets/images/faces/face4.jpg" alt="profile image">
+                  <img
+                    class="img-sm rounded-circle mb-2 mb-md-0"
+                    src="../assets/images/faces/face4.jpg"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">Marques Brownlee :</p>
+                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">
+                      Marques Brownlee :
+                    </p>
                     <p class="font-weight-medium mr-1 mb-0">[#23047]</p>
-                    <p class="font-weight-bold mb-0 ellipsis">Lorem ipsum dolor sit amet, consectetur.</p>
+                    <p class="font-weight-bold mb-0 ellipsis">
+                      Lorem ipsum dolor sit amet, consectetur.
+                    </p>
                   </div>
-                  <p class="text-small text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum sequi a, nostrum.</p>
+                  <p class="text-small text-gray">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Illum sequi a, nostrum.
+                  </p>
                   <div class="row text-muted d-flex mb-2 mb-md-0">
                     <div class="col-xl-4 d-sm-flex">
                       <p class="mb-0 mr-2">Last responded :</p>
@@ -301,30 +445,60 @@
                 </div>
                 <div class="ticket-actions col-md-2">
                   <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-teal dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      class="btn btn-teal dropdown-toggle btn-sm"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Manage
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-reply fa-fw"></i>Quick reply</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-history fa-fw"></i>Another action</a
+                      >
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-check text-success fa-fw"></i>Resolve
+                        Issue</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-times text-danger fa-fw"></i>Close
+                        Issue</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row ticket-card mt-3 pb-2">
                 <div class="col-md-1">
-                  <img class="img-sm rounded-circle mb-2 mb-md-0" src="../assets/images/faces/face5.jpg" alt="profile image">
+                  <img
+                    class="img-sm rounded-circle mb-2 mb-md-0"
+                    src="../assets/images/faces/face5.jpg"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">Marina John :</p>
+                    <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">
+                      Marina John :
+                    </p>
                     <p class="font-weight-medium mr-1 mb-0">[#23034]</p>
-                    <p class="font-weight-bold mb-0 ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi amet totam, dignissimos fugiat voluptates, ab magni, necessitatibus excepturi inventore, mollitia ipsa quaerat aliquam.</p>
+                    <p class="font-weight-bold mb-0 ellipsis">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Quasi amet totam, dignissimos fugiat voluptates, ab magni,
+                      necessitatibus excepturi inventore, mollitia ipsa quaerat
+                      aliquam.
+                    </p>
                   </div>
-                  <p class="text-small text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae animi omnis, a?</p>
+                  <p class="text-small text-gray">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Recusandae animi omnis, a?
+                  </p>
                   <div class="row text-muted d-flex mb-2 mb-md-0">
                     <div class="col-xl-4 d-sm-flex">
                       <p class="mb-0 mr-2">Last responded :</p>
@@ -338,15 +512,31 @@
                 </div>
                 <div class="ticket-actions col-md-2">
                   <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-teal dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      class="btn btn-teal dropdown-toggle btn-sm"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Manage
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-reply fa-fw"></i>Quick reply</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-history fa-fw"></i>Another action</a
+                      >
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                      <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-check text-success fa-fw"></i>Resolve
+                        Issue</a
+                      >
+                      <a class="dropdown-item" href="#"
+                        ><i class="fa fa-times text-danger fa-fw"></i>Close
+                        Issue</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -365,5 +555,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

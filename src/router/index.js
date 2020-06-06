@@ -32,113 +32,182 @@ import error500 from '../views/sample-pages/error-500'
 import login from '../views/sample-pages/login'
 import register from '../views/sample-pages/register'
 
-Vue.use(Router)
 
+import Layout from '../components/layout/Layout'
+import PostManagement from '../views/ui-admin/post-management/PostManagement'
+import RoleManagement from '../views/ui-admin/role-management/RoleManagement'
+import UserManagement from '../views/ui-admin/user-management/UserManagement'
+import ParentCategory from '../views/ui-admin/category-parent/CategoryParent'
+import SubCategory from '../views/ui-admin/category-sub/CategorySub'
+
+Vue.use(Router)
 export default new Router({
-  linkActiveClass: 'active',
-  routes: [{
-    path: '/',
-    name: 'dashboard',
-    component: dashboard
-  },
-  {
-    path: '/widgets',
-    name: 'widgets',
-    component: widgets
-  },
-  {
-    path: '/404',
-    name: 'error-404',
-    component: error404
-  },
-  {
-    path: '/500',
-    name: 'error-500',
-    component: error500
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: login
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: register
-  },
-  {
-    path: '/alerts',
-    name: 'alerts',
-    component: alerts
-  },
-  {
-    path: '/badges',
-    name: 'badges',
-    component: badges
-  },
-  {
-    path: '/breadcrumbs',
-    name: 'breadcrumbs',
-    component: breadcrumbs
-  },
-  {
-    path: '/buttons',
-    name: 'buttons',
-    component: buttons
-  },
-  {
-    path: '/carousel',
-    name: 'carousel',
-    component: carousel
-  },
-  {
-    path: '/dropdowns',
-    name: 'dropdowns',
-    component: dropdowns
-  },
-  {
-    path: '/icons',
-    name: 'icons',
-    component: icons
-  },
-  {
-    path: '/modals',
-    name: 'modals',
-    component: modals
-  },
-  {
-    path: '/paginations',
-    name: 'paginations',
-    component: paginations
-  },
-  {
-    path: '/progress',
-    name: 'progress',
-    component: progress
-  },
-  {
-    path: '/tables',
-    name: 'tables',
-    component: tables
-  },
-  {
-    path: '/typography',
-    name: 'typography',
-    component: typography
-  },
-  {
-    path: '/tabs',
-    name: 'tabs',
-    component: tabs
-  },
-  {
-    path: '/tooltips',
-    name: 'tooltips',
-    component: tooltips
-  },
-  {
-    path: '/forms',
-    name: 'forms',
-    component: forms
-  }]
+  mode: 'history',
+  routes: [
+    {
+      path: '/admin',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/admin',
+      name: 'Layout',
+      component: Layout,
+      children: [
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: dashboard,
+        },
+        {
+          path: 'widgets',
+          name: 'Dashboard',
+          component: widgets,
+        },
+        {
+          path: 'post-management',
+          name: 'PostManagement',
+          component: PostManagement,
+        },
+        {
+          path: 'role-management',
+          name: 'RoleManagement',
+          component: RoleManagement,
+        },
+        {
+          path: 'user-management',
+          name: 'UserManagement',
+          component: UserManagement,
+        },
+        {
+          path: 'parent-category',
+          name: 'CategoryParent',
+          component: ParentCategory,
+        },
+        {
+          path: 'sub-category',
+          name: 'SubCategory',
+          component: SubCategory,
+        }
+      ]
+    },
+  ]
 })
+
+// export default new Router({
+//   linkActiveClass: 'active',
+//   mode: 'history',
+//   routes: [
+//     {
+//       path: '/admin',
+//       name: 'Layout',
+//       component: Layout,
+//       children: [
+//         {
+//           path: '/',
+//           name: 'dashboard',
+//           component: dashboard
+//         },
+//         {
+//           path: '/widgets',
+//           name: 'widgets',
+//           component: widgets
+//         },
+//         {
+//           path: '/404',
+//           name: 'error-404',
+//           component: error404
+//         },
+//         {
+//           path: '/500',
+//           name: 'error-500',
+//           component: error500
+//         },
+//         {
+//           path: '/login',
+//           name: 'login',
+//           component: login
+//         },
+//         {
+//           path: '/register',
+//           name: 'register',
+//           component: register
+//         },
+//         {
+//           path: '/alerts',
+//           name: 'alerts',
+//           component: alerts
+//         },
+//         {
+//           path: '/badges',
+//           name: 'badges',
+//           component: badges
+//         },
+//         {
+//           path: '/breadcrumbs',
+//           name: 'breadcrumbs',
+//           component: breadcrumbs
+//         },
+//         {
+//           path: '/buttons',
+//           name: 'buttons',
+//           component: buttons
+//         },
+//         {
+//           path: '/carousel',
+//           name: 'carousel',
+//           component: carousel
+//         },
+//         {
+//           path: '/dropdowns',
+//           name: 'dropdowns',
+//           component: dropdowns
+//         },
+//         {
+//           path: '/icons',
+//           name: 'icons',
+//           component: icons
+//         },
+//         {
+//           path: '/modals',
+//           name: 'modals',
+//           component: modals
+//         },
+//         {
+//           path: '/paginations',
+//           name: 'paginations',
+//           component: paginations
+//         },
+//         {
+//           path: '/progress',
+//           name: 'progress',
+//           component: progress
+//         },
+//         {
+//           path: '/tables',
+//           name: 'tables',
+//           component: tables
+//         },
+//         {
+//           path: '/typography',
+//           name: 'typography',
+//           component: typography
+//         },
+//         {
+//           path: '/tabs',
+//           name: 'tabs',
+//           component: tabs
+//         },
+//         {
+//           path: '/tooltips',
+//           name: 'tooltips',
+//           component: tooltips
+//         },
+//         {
+//           path: '/forms',
+//           name: 'forms',
+//           component: forms
+//         }
+//       ]
+//     }]
+// })
