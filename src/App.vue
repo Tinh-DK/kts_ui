@@ -4,9 +4,24 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
 export default{
   name: 'app',
+  created() {
+    // const currentPath = this.$router.history.current.path;
+
+    // if (currentPath === '/') {
+    //   return
+    // }
+
+    // if (sessionStorage.getItem('authenticated') !== 'true') {
+    //   this.$router.push('/admin');
+    // }
+
+    // if (currentPath === '/admin') {
+    //   this.$router.push('/admin/dashboard');
+    // }
+  },
 }
 </script>
 <style>

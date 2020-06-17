@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="tables">
-    <h4 class="card-title">Role management</h4>
+    <h4 class="card-title">Quản Lý Quyền</h4>
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
@@ -10,7 +10,7 @@
                 <b-form-input type="text" v-model="roleModel.id"></b-form-input>
               </b-form-group>
               <div class="col-md-4">
-                <b-form-group label="Tên quyền 1">
+                <b-form-group label="Tên quyền 1" label-for="input14">
                   <b-form-input
                     type="text"
                     v-model="roleModel.tencd"
@@ -19,7 +19,7 @@
                 </b-form-group>
               </div>
               <div class="col-md-4">
-                <b-form-group label="Tên quyền 2">
+                <b-form-group label="Tên quyền 2" label-for="input14">
                   <b-form-input
                     type="text"
                     v-model="roleModel.tenkd"
@@ -109,9 +109,9 @@ export default {
       delFlg: "",
       roleModel: {},
       delOption: [
-        { value: "", text: "Tất cả" },
-        { value: 1, text: "Đã xóa" },
-        { value: 0, text: "Chưa xóa" }
+        { value: "", text: "All" },
+        { value: 0, text: "Active" },
+        { value: 1, text: "Inactive" }
       ],
       items: [],
       fields: [

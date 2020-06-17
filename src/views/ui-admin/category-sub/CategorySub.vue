@@ -1,35 +1,48 @@
 <template lang="html">
   <section class="tables">
-    <h4 class="card-title">Sub Category</h4>
+    <h4 class="card-title">Quản Lý Loại Tin</h4>
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
             <div class="row">
               <b-form-group hidden>
-                <b-form-input type="text" v-model="roleModel.id"></b-form-input>
+                <b-form-input type="text" v-model="subModel.id"></b-form-input>
               </b-form-group>
-              <div class="col-md-6">
-                <b-form-group label="Tên quyền 1">
+              <div class="col-md-4">
+                <b-form-group label="Thể loại" label-for="input14">
+                  <b-form-select
+                    :options="categoryOption"
+                    v-model="subModel.theloaiid"
+                  />
+                </b-form-group>
+              </div>
+              <div class="col-md-4">
+                <b-form-group label="Loại tin" label-for="input14">
                   <b-form-input
                     type="text"
-                    placeholder="Nhập tên quyền..."
+                    v-model="subModel.tencd"
+                    placeholder="Nhập loại tin..."
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <div class="col-md-6">
-                <b-form-group label="Tên quyền 2">
-                  <b-form-input
-                    type="text"
-                    placeholder="Nhập tên quyền..."
-                  ></b-form-input>
+              <div class="col-md-4">
+                <b-form-group label="Sử dụng" label-for="input14">
+                  <input
+                    type="checkbox"
+                    :v-model="subModel.sudung"
+                    :checked="subModel.sudung === 1"
+                    @change="check($event)"
+                  />
                 </b-form-group>
               </div>
               <div class="col-md-12">
-                <b-button type="submit" variant="success" class="mr-2"
+                <b-button variant="success" class="mr-2" @click="add"
                   >Thêm</b-button
                 >
-                <b-button variant="light">Xóa</b-button>
+                <b-button variant="info" class="mr-2" @click="update"
+                  >Cập nhật</b-button
+                >
               </div>
             </div>
           </div>
@@ -41,16 +54,33 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <b-form-group label="">
-                  <b-form-select :options="statusArr" />
+                  <b-form-select :options="delOption" v-model="delFlg" />
                 </b-form-group>
               </div>
-              <div class="col-md-6">
-                <b-button variant="primary" class="btn-fw">Tìm kiếm</b-button>
+              <div class="col-md-4">
+                <b-button variant="primary" class="btn-fw" @click="search"
+                  >Tìm kiếm</b-button
+                >
               </div>
             </div>
-            <b-table bordered responsive :items="items"></b-table>
+            <b-table bordered hover responsive :items="items" :fields="fields">
+              <template v-slot:cell(trangthai)="data">
+                <label v-if="data.item.sudung === 1" class="badge badge-success"
+                  >Active</label
+                >
+                <label v-if="data.item.sudung === 0" class="badge badge-danger"
+                  >Inactive</label
+                >
+              </template>
+              <template v-slot:cell(hanhdong)="data">
+                <div>
+                  <a class="btn btn-outline-info btn-sm" @click="editRole(data.item)">Edit</a>
+                  <a class="btn btn-outline-danger btn-sm" @click="deleteRole(data.item.id)">Xóa</a>
+                </div>
+              </template>
+            </b-table>
           </div>
         </div>
       </div>
@@ -59,71 +89,198 @@
 </template>
 
 <script>
-const itemsTwo = [
-  { Status: true, age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-  { Status: false, age: 21, first_name: "Larsen", last_name: "Shaw" },
-  {
-    Status: false,
-    age: 89,
-    first_name: "Geneva",
-    last_name: "Wilson",
-    _rowVariant: "danger"
-  },
-  {
-    Status: true,
-    age: 40,
-    first_name: "Thor",
-    last_name: "Macdonald",
-    _cellVariants: { Status: "success", age: "info", first_name: "warning" }
-  },
-  { Status: false, age: 29, first_name: "Dick", last_name: "Dunlap" }
-];
+import { HTTP } from "@/api/https";
 export default {
-  name: "category-sub",
+  name: "role-management",
+  components: {
+    HTTP
+  },
   data() {
     return {
-      roleModel: {},
-      statusArr: [
-        { value: 1, text: "Tất cả" },
-        { value: 2, text: "Đã xóa" },
-        { value: 3, text: "Đang sử dụng" }
+      categoryOption: [],
+      delFlg: "",
+      subModel: {},
+      delOption: [
+        { value: "", text: "All" },
+        { value: 0, text: "Active" },
+        { value: 1, text: "Inactive" }
       ],
-      itemsTwo: itemsTwo,
-      items: [
+      items: [],
+      fields: [
         {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald"
+          key: "id",
+          label: "#"
         },
-        { isActive: false, age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { isActive: false, age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { isActive: true, age: 38, first_name: "Jami", last_name: "Carney" }
-      ],
-      fields: {
-        last_name: {
-          label: "Person last name",
+        {
+          key: "tencd",
+          label: "Tên có dấu"
+        },
+        {
+          key: "tenkd",
+          label: "Tên không dấu"
+        },
+        {
+          key: "theloai",
+          label: "Thể loại",
           sortable: true
         },
-        first_name: {
-          label: "Person first name",
-          sortable: false
+        {
+          key: "ngaytao",
+          label: "Ngày"
         },
-        foo: {
-          // This key overrides `foo`!
-          key: "age",
-          label: "Person age",
-          sortable: true
+        {
+          key: "trangthai",
+          label: "Trạng thái"
+        },
+        {
+          key: "hanhdong",
+          label: "Hành động"
         }
-      }
+      ]
     };
   },
-  methods: {}
+  created() {
+    this.init();
+  },
+  methods: {
+
+    init() {
+      HTTP.post("sub/init").then(this.handleInitSuccess);
+    },
+
+    handleInitSuccess(res) {
+      if (res === undefined || res === null) {
+        return;
+      }
+      let categorys = res.data.categorys;
+      if (categorys.length === 0) {
+        return;
+      }
+      this.roleOption = [];
+      // this.userModel.roleid = roles[0].id;
+      categorys.forEach(element => {
+        this.categoryOption.push({ value: element.id, text: element.tencd });
+      });
+    },
+    search() {
+      let param = {
+        del_flg: this.delFlg
+      };
+      HTTP.post("sub/search", param).then(this.handleSearchSuccess);
+    },
+
+    add() {
+      if (this.subModel.tencd === undefined) {
+        return;
+      }
+      let tenkd_tem = this.subModel.tencd;
+      tenkd_tem = this.removeAccents(tenkd_tem);
+      tenkd_tem = tenkd_tem.toLowerCase();
+      let tem = tenkd_tem.replace(/ /g, "-");
+      this.subModel.tenkd = tem;
+
+      HTTP.post("sub/add", this.subModel).then(this.handleAddSuccess);
+    },
+
+    deleteRole(id) {
+      if (id === undefined) {
+        return;
+      }
+      HTTP.delete("sub/delete/" + id).then(this.handleDeleteSuccess);
+    },
+
+    editRole(role) {
+      if (role === undefined || role === null) {
+        return;
+      }
+      this.subModel = role;
+    },
+
+    update() {
+      if (
+        this.subModel.tencd === undefined
+      ) {
+        return;
+      }
+      HTTP.post("sub/update", this.subModel).then(
+        this.handleUpdateSuccess
+      );
+    },
+
+    handleSearchSuccess(res) {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.subModel = {};
+      this.items = res.data.categorys;
+    },
+
+    handleAddSuccess(res) {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.subModel = {};
+      this.search();
+    },
+
+    handleDeleteSuccess(res) {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.subModel = {};
+      this.search();
+    },
+
+    handleUpdateSuccess(res) {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.subModel = {};
+      this.search();
+    },
+
+    check(event) {
+      if (event === null || event === undefined) {
+        return;
+      }
+      let checked = event.target.checked;
+      this.subModel.sudung = checked ? 1 : 0;
+    },
+    removeAccents(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+  }
 };
 </script>
 
 <style lang="scss">
 .table-responsive {
   border-top: 1px solid #f3f3f3;
+  .table {
+    thead {
+      th {
+        background-color: slategray;
+        border-bottom: slategray;
+        color: #ffffff;
+        text-align: center !important;
+        position: sticky;
+        top: 0px;
+        z-index: 1000;
+      }
+    }
+    tbody {
+      td {
+        &:hover {
+          cursor: pointer;
+        }
+        &:nth-child(1),
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6) {
+          text-align: center !important;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="tables">
-    <h4 class="card-title">User management</h4>
+    <h4 class="card-title">Quản Lý Người Dùng</h4>
     <div class="row">
       <div class="col-12 grid-margin">
         <div class="card">
@@ -10,21 +10,21 @@
                 <b-form-input type="text" v-model="userModel.id"></b-form-input>
               </b-form-group>
               <div class="col-md-6">
-                <b-form-group label="Tên đăng nhập">
+                <b-form-group label="Tên đăng nhập" label-for="input14">
                   <b-form-input
                     type="text"
                     v-model="userModel.tendangnhap"
                     placeholder="Tên đăng nhập..."
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group label="Mật khẩu">
+                <b-form-group label="Mật khẩu" label-for="input14">
                   <b-form-input
                     type="password"
                     v-model="userModel.matkhau"
                     placeholder="Mật khẩu..."
                   ></b-form-input>
                 </b-form-group>
-                <b-form-group label="Nhập lại mật khẩu">
+                <b-form-group label="Nhập lại mật khẩu" label-for="input14">
                   <b-form-input
                     type="password"
                     v-model="userModel.matkhaunhaplai"
@@ -33,7 +33,7 @@
                 </b-form-group>
               </div>
               <div class="col-md-6">
-                <b-form-group label="Tên hiển thị">
+                <b-form-group label="Tên hiển thị" label-for="input14">
                   <b-form-input
                     type="text"
                     v-model="userModel.tenhienthi"
@@ -128,9 +128,9 @@ export default {
       userModel: {},
       roleOption: [],
       delOption: [
-        { value: "", text: "Tất cả" },
-        { value: 1, text: "Đã xóa" },
-        { value: 0, text: "Chưa xóa" }
+        { value: "", text: "All" },
+        { value: 0, text: "Active" },
+        { value: 1, text: "Inactive" }
       ],
       items: [],
       fields: [

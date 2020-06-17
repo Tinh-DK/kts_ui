@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
 import AppHeader from '../partials/AppHeader'
 import AppSidebar from '../partials/AppSidebar'
 import AppFooter from '../partials/AppFooter'

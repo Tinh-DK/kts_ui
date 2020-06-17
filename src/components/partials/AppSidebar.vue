@@ -9,8 +9,8 @@
               <span class="online-status online"></span>
             </div>
             <div class="profile-name">
-              <p class="name">Richard V.Welsh</p>
-              <p class="designation">Manager</p>
+              <p class="name">{{username}}</p>
+              <p class="designation">{{rolename}}</p>
               <div class="badge badge-teal mx-auto mt-3">Online</div>
             </div>
           </div>
@@ -21,26 +21,19 @@
               class="menu-icon"
               src="../../assets/images/menu_icons/01.png"
               alt="menu icon"
-            /><span class="menu-title">Dashboard</span></router-link
+            /><span class="menu-title">Trang Chủ</span></router-link
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/admin/post-management"
-            ><img
-              class="menu-icon"
-              src="../../assets/images/menu_icons/04.png"
-              alt="menu icon"
-            /><span class="menu-title">Post Management</span></router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/admin/role-management"
-            ><img
-              class="menu-icon"
-              src="../../assets/images/menu_icons/03.png"
-              alt="menu icon"
-            /><span class="menu-title">Role Management</span></router-link
-          >
+          <span class="nav-link" v-b-toggle="'sample-pages'">
+            <img class="menu-icon" src="../../assets/images/menu_icons/04.png" alt="menu icon"><span class="menu-title">Quản Lý Bài Viết</span><i class="menu-arrow"></i>
+          </span>
+          <b-collapse id="sample-pages">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"><router-link class="nav-link" to="/admin/post-management">Danh sách bài viết</router-link></li>
+              <li class="nav-item"><router-link class="nav-link" to="/admin/post-add">Thêm bài viết</router-link></li>
+            </ul>
+          </b-collapse>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/admin/parent-category"
@@ -48,7 +41,7 @@
               class="menu-icon"
               src="../../assets/images/menu_icons/07.png"
               alt="menu icon"
-            /><span class="menu-title">Parent Category</span></router-link
+            /><span class="menu-title">Quản Lý Thể Loại</span></router-link
           >
         </li>
         <li class="nav-item">
@@ -57,7 +50,16 @@
               class="menu-icon"
               src="../../assets/images/menu_icons/08.png"
               alt="menu icon"
-            /><span class="menu-title">Sub Category</span></router-link
+            /><span class="menu-title">Quản Lý Loại Tin</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/admin/role-management"
+            ><img
+              class="menu-icon"
+              src="../../assets/images/menu_icons/03.png"
+              alt="menu icon"
+            /><span class="menu-title">Quản Lý Quyền</span></router-link
           >
         </li>
         <li class="nav-item">
@@ -66,7 +68,7 @@
               class="menu-icon"
               src="../../assets/images/menu_icons/09.png"
               alt="menu icon"
-            /><span class="menu-title">User Management</span></router-link
+            /><span class="menu-title">Quản Lý Người Dùng</span></router-link
           >
         </li>
       </ul>
@@ -74,9 +76,19 @@
   </section>
 </template>
 
-<script lang="js">
+<script>
 export default {
-  name: 'app-sidebar'
+  name: 'app-sidebar',
+  data: function () {
+    return {
+      username: "",
+      rolename: ""
+    }
+  },
+  created() {
+    this.username = sessionStorage.getItem('username')
+    this.rolename = sessionStorage.getItem('quyen')
+  }
 }
 </script>
 

@@ -34,11 +34,15 @@ import register from '../views/sample-pages/register'
 
 
 import Layout from '../components/layout/Layout'
+import LayoutPublic from '../components/layout/LayoutPublic'
 import PostManagement from '../views/ui-admin/post-management/PostManagement'
+import PostAdd from '../views/ui-admin/post-management/PostAdd'
 import RoleManagement from '../views/ui-admin/role-management/RoleManagement'
 import UserManagement from '../views/ui-admin/user-management/UserManagement'
 import ParentCategory from '../views/ui-admin/category-parent/CategoryParent'
 import SubCategory from '../views/ui-admin/category-sub/CategorySub'
+import Post from '../views/ui-public/post/Post'
+import Home from '../views/ui-public/home/Home'
 
 Vue.use(Router)
 export default new Router({
@@ -48,6 +52,23 @@ export default new Router({
       path: '/admin',
       name: 'login',
       component: login
+    },
+    {
+      path: '/',
+      name: 'LayoutPublic',
+      component: LayoutPublic,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: Home
+        },
+        {
+          path: '/post/:tenkd',
+          name: 'post',
+          component: Post
+        },
+      ]
     },
     {
       path: '/admin',
@@ -68,6 +89,11 @@ export default new Router({
           path: 'post-management',
           name: 'PostManagement',
           component: PostManagement,
+        },
+        {
+          path: 'post-add',
+          name: 'PostAdd',
+          component: PostAdd,
         },
         {
           path: 'role-management',

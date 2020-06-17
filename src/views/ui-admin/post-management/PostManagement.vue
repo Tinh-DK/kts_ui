@@ -1,28 +1,43 @@
-<template lang="html">
+<template>
   <section class="tables">
-    <h4 class="card-title">Post management</h4>
+    <h4 class="card-title">Quản Lý Bài Viết</h4>
     <div class="row">
-      <div class="col-lg-12 grid-margin stretch-card">
+      <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6">
-                <b-form-group label="Status">
-                  <b-form-select :options="statusArr" />
-                </b-form-group>
+              <div class="col-md-4">
+              <b-form-group label-for="input14">
+                <b-form-input type="text" placeholder="Tên bài viết, thể loại, loại tin ...."></b-form-input>
+              </b-form-group>
               </div>
-              <div class="col-md-6" style="margin-top: 28px">
-                <b-button variant="primary" class="btn-fw">Tìm kiếm </b-button>
+              <div class="col-md-4">
+                <b-button variant="info" class="mr-2 btn-sm" @click="search">Tìm kiếm</b-button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Danh sách bài viết</h4>
-            <b-table bordered responsive :items="items"> </b-table>
+            <b-table bordered hover responsive :items="items" :fields="fields">
+              <template v-slot:cell(img)="data">
+                <img :src="data.item.hinhanh" class="img-post-custom" />
+              </template>
+              <template v-slot:cell(trangthai)="data">
+                <label v-if="data.item.sudung === 1" class="badge badge-success">Active</label>
+                <label v-if="data.item.sudung === 0" class="badge badge-danger">Inactive</label>
+              </template>
+              <template v-slot:cell(hanhdong)="data">
+                <div>
+                  <a class="btn btn-outline-info btn-sm" @click="editRole(data.item)">Edit</a>
+                  <a class="btn btn-outline-danger btn-sm" @click="deleteRole(data.item.id)">Xóa</a>
+                </div>
+              </template>
+            </b-table>
           </div>
         </div>
       </div>
@@ -31,66 +46,71 @@
 </template>
 
 <script>
-const itemsTwo = [
-  { Status: true, age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-  { Status: false, age: 21, first_name: "Larsen", last_name: "Shaw" },
-  {
-    Status: false,
-    age: 89,
-    first_name: "Geneva",
-    last_name: "Wilson",
-    _rowVariant: "danger"
-  },
-  {
-    Status: true,
-    age: 40,
-    first_name: "Thor",
-    last_name: "Macdonald",
-    _cellVariants: { Status: "success", age: "info", first_name: "warning" }
-  },
-  { Status: false, age: 29, first_name: "Dick", last_name: "Dunlap" }
-];
+import { HTTP } from "@/api/https";
 export default {
   name: "post-management",
   data() {
     return {
-      statusArr: [
-        { value: 1, text: "Tất cả" },
-        { value: 2, text: "Đã xóa" },
-        { value: 3, text: "Đang sử dụng" }
-      ],
-      itemsTwo: itemsTwo,
-      items: [
+      items: [],
+      fields: [
         {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald"
+          key: "id",
+          label: "#"
         },
-        { isActive: false, age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { isActive: false, age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { isActive: true, age: 38, first_name: "Jami", last_name: "Carney" }
-      ],
-      fields: {
-        last_name: {
-          label: "Person last name",
-          sortable: true
+        {
+          key: "img",
+          label: "Hình ảnh"
         },
-        first_name: {
-          label: "Person first name",
-          sortable: false
+        {
+          key: "tencd",
+          label: "Tên bài viết"
         },
-        foo: {
-          // This key overrides `foo`!
-          key: "age",
-          label: "Person age",
-          sortable: true
+        {
+          key: "nguoitao",
+          label: "Người tạo"
+        },
+        {
+          key: "loaitin",
+          label: "Loại tin"
+        },
+        {
+          key: "ngaytao",
+          label: "Ngày"
+        },
+        {
+          key: "trangthai",
+          label: "Trạng thái"
+        },
+        {
+          key: "hanhdong",
+          label: "Hành động"
         }
-      }
+      ]
     };
   },
-  methods: {}
+  created() {
+    this.init();
+  },
+  methods: {
+    init() {
+      HTTP.post("/post/search")
+        .then(this.handleInitSuccess)
+        .catch(this.handleInitError);
+    },
+
+    handleInitSuccess(res) {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.items = res.data.posts;
+    }
+  }
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.img-post-custom {
+  width: auto;
+  height: 50px;
+}
+</style>

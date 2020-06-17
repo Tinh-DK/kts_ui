@@ -1,72 +1,89 @@
-<template lang="html">
+<template>
   <div class="auth-page">
-    <b-container>
-      <h5 class="auth-logo">
-        ĐĂNG NHẬP HỆ THỐNG
-      </h5>
-      <Widget
-        class="widget-auth mx-auto"
-        title="<h3 class='mt-0'>Login to your Web App</h3>"
-        customHeader
-      >
-        <form class="mt" @submit.prevent="login">
-          <b-alert class="alert-sm" variant="danger" :show="!!errorMessage">
-            {{ errorMessage }}
-          </b-alert>
-          <div class="form-group">
-            <input
-              class="form-control no-border"
-              ref="email"
-              required
-              type="email"
-              name="email"
-              placeholder="Email"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              class="form-control no-border"
-              ref="password"
-              required
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-          </div>
-          <b-button
-            type="submit"
-            size="sm"
-            class="auth-btn mb-3"
-            variant="info"
-            >Login</b-button
-          >
-          <p class="widget-auth-info">or sign in with</p>
-          <div class="social-buttons">
-            <b-button variant="primary" class="social-button mb-2">
-              <i class="social-icon social-google"></i>
-              <p class="social-text">GOOGLE</p>
-            </b-button>
-            <b-button variant="success" class="social-button">
-              <i class="social-icon social-microsoft"></i>
-              <p class="social-text">MICROSOFT</p>
-            </b-button>
-          </div>
-        </form>
-        <p class="widget-auth-info">
-          Don't have an account? Sign up now!
-        </p>
-        <router-link class="d-block text-center" to="login"
-          >Create an Account</router-link
-        >
-      </Widget>
+    <b-container class="widget-auth mx-auto widget">
+      <h5 class="auth-logo">ĐĂNG NHẬP HỆ THỐNG</h5>
+      <div>
+        <b-alert class="alert-sm" variant="danger" :show="!!errorMessage">{{ errorMessage }}</b-alert>
+        <div class="form-group">
+          <input
+            class="form-control"
+            required
+            name="tendangnhap"
+            v-model="loginModel.tendangnhap"
+            placeholder="Tên đăng nhập..."
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            required
+            type="password"
+            name="matkhau"
+            v-model="loginModel.matkhau"
+            placeholder="Mật khẩu"
+          />
+        </div>
+        <b-button type="submit" size="sm" class="auth-btn mb-3" variant="info" @click="login">Login</b-button>
+        <p class="widget-auth-info">or sign in with</p>
+        <div class="social-buttons">
+          <b-button variant="primary" class="social-button mb-2">
+            <i class="social-icon social-google"></i>
+            <p class="social-text">GOOGLE</p>
+          </b-button>
+          <b-button variant="success" class="social-button">
+            <i class="social-icon social-microsoft"></i>
+            <p class="social-text">MICROSOFT</p>
+          </b-button>
+        </div>
+      </div>
+      <p class="widget-auth-info">Don't have an account? Sign up now!</p>
     </b-container>
   </div>
 </template>
 
-<script lang="js">
+<script>
+import { HTTP } from "@/api/https";
 export default {
-  name: 'login'
-}
+  name: "login",
+  data: function() {
+    return {
+      errorMessage: "",
+      loginModel: {
+        tendangnhap: "",
+        matkhau: ""
+      }
+    };
+  },
+  methods: {
+    login() {
+      if (this.loginModel.tendangnhap.length === 0) {
+        this.errorMessage = "Vui lòng nhập tên đăng nhập"
+        return
+      }
+      if (this.loginModel.matkhau.length === 0) {
+        this.errorMessage = "Vui lòng nhập mật khẩu"
+        return
+      }
+      this.errorMessage = ''
+      HTTP.post("user/login", this.loginModel)
+        .then((res) => {
+          // Case login failed
+          if (res.data.status === 99) {
+            this.errorMessage = res.data.msg
+          }
+          // Case login success
+          let user = res.data.user
+          if (user.quyen == 'Admin') {
+            sessionStorage.setItem('idnguoidung', user.id)
+            sessionStorage.setItem('username', user.tenhienthi)
+            sessionStorage.setItem('authenticated', true)
+            sessionStorage.setItem('quyen', user.quyen)
+            this.$router.push({path: '/admin/dashboard'})
+          }
+        });
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
