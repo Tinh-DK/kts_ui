@@ -150,13 +150,6 @@
           </b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown right class="preview-list">
-          <template slot="button-content">
-            <img
-              src="../../assets/images/faces/face4.jpg"
-              alt="profile image"
-              class="img-xs rounded-circle"
-            />
-          </template>
           <b-dropdown-item href="#" class="preview-item flex-wrap"
             >Profile</b-dropdown-item
           >
@@ -186,8 +179,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.app-header {
-}
-</style>

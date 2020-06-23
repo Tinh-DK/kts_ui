@@ -16,8 +16,8 @@
                 <div class="post-meta">
                   <a
                     class="post-category"
-                    href="#"
-                    v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                    v-bind:href="'/category/'+ post.loaitinkd"
+                    :class="post.style"
                   >{{post.loaitin}}</a>
                   <span class="post-date">{{post.ngaytao}}</span>
                 </div>
@@ -52,7 +52,7 @@
                   <div class="post-meta">
                     <a
                       class="post-category"
-                      v-bind:class="{'cat-1': editorArr[0].theloaikd == 'lap-trinh-web', 'cat-2': editorArr[0].theloaikd == 'backend', 'cat-3': editorArr[0].theloaikd == 'co-so-du-lieu'}"
+                      :class="editorArr[0].style"
                       v-bind:href="'/category/'+ editorArr[0].loaitinkd"
                     >{{editorArr[0].loaitin}}</a>
                     <span class="post-date">{{editorArr[0].ngaytao}}</span>
@@ -75,7 +75,7 @@
                       <span class="d-block">
                         <a
                           class="post-category"
-                          v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                          :class="post.style"
                           v-bind:href="'/category/'+ post.loaitinkd"
                         >{{post.loaitin}}</a>
                       </span>
@@ -100,7 +100,7 @@
                   <span class="d-block">
                     <a
                       class="post-category"
-                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      :class="post.style"
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
@@ -136,7 +136,7 @@
               <span class="d-block">
                 <a
                   class="post-category"
-                  v-bind:class="{'cat-1': editorArr[editorArr.length - 1].theloaikd == 'lap-trinh-web', 'cat-2': editorArr[editorArr.length - 1].theloaikd == 'backend', 'cat-3': editorArr[editorArr.length - 1].theloaikd == 'co-so-du-lieu'}"
+                  :class="editorArr[editorArr.length - 1].style"
                   v-bind:href="'/category/'+ editorArr[editorArr.length - 1].loaitinkd"
                 >{{editorArr[editorArr.length - 1].loaitin}}</a>
               </span>
@@ -165,7 +165,7 @@
                   <span class="d-block">
                     <a
                       class="post-category"
-                      v-bind:class="{'cat-1': item.theloaikd == 'lap-trinh-web', 'cat-2': item.theloaikd == 'backend', 'cat-3': item.theloaikd == 'co-so-du-lieu'}"
+                      :class="item.style"
                       v-bind:href="'/category/'+ item.loaitinkd"
                     >{{item.loaitin}}</a>
                   </span>
@@ -196,7 +196,7 @@
                   <span class="d-block">
                     <a
                       class="post-category"
-                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      :class="post.style"
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
@@ -220,7 +220,7 @@
                   <span class="d-block">
                     <a
                       class="post-category"
-                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      :class="post.style"
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>

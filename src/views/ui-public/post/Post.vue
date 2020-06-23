@@ -20,11 +20,7 @@
                   <a href="#">{{content.nguoitao}}</a> in
                   <a href="#">{{content.loaitin}}</a>
                 </span>
-                <span class="date-read">
-                  {{content.ngaytao}}
-                  <span class="mx-1">•</span> 3 min read
-                  <span class="icon-star2"></span>
-                </span>
+                <span class="date-read">{{content.ngaytao}}</span>
               </div>
             </div>
             <div class="section-row sticky-container">
@@ -163,34 +159,34 @@
                 <h2>Leave a reply</h2>
                 <p>your email address will not be published. required fields are marked *</p>
               </div>
-              <form class="post-reply">
+              <div class="post-reply">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Name *</span>
-                      <input class="input" type="text" name="name" />
+                      <input class="input" type="text" name="name" v-model="commentModel.name"/>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Email *</span>
-                      <input class="input" type="email" name="email" />
+                      <input class="input" type="email" name="email" v-model="commentModel.email"/>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Website</span>
-                      <input class="input" type="text" name="website" />
+                      <input class="input" type="text" name="website" v-model="commentModel.website"/>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <textarea class="input" name="message" placeholder="Message"></textarea>
+                      <textarea class="input" name="message" v-model="commentModel.content"></textarea>
                     </div>
                     <button class="primary-button">Submit</button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <!-- /reply -->
           </div>
@@ -220,13 +216,9 @@
                   <div class="post-meta">
                     <span class="d-block">
                       <a href="#">{{post.nguoitao}}</a> in
-                      <a href="#">{{post.loaitin}}</a>
+                      <a v-bind:href="'/category/'+ post.loaitinkd">{{post.loaitin}}</a>
                     </span>
-                    <span class="date-read">
-                      {{post.ngaytao}}
-                      <span class="mx-1">•</span> 3 min read
-                      <span class="icon-star2"></span>
-                    </span>
+                    <span class="date-read">{{post.ngaytao}}</span>
                   </div>
                 </div>
               </div>
@@ -244,7 +236,11 @@
                 </a>
                 <div class="post-body">
                   <div class="post-meta">
-                    <a class="post-category cat-3" href="#">{{post.loaitin}}</a>
+                    <a
+                      class="post-category"
+                      :class="post.style"
+                      v-bind:href="'/category/'+ post.loaitinkd"
+                    >{{post.loaitin}}</a>
                     <span class="post-date">{{post.ngaytao}}</span>
                   </div>
                   <h3 class="post-title">
@@ -263,11 +259,9 @@
               <div class="category-widget">
                 <ul>
                   <li v-for="item in catagories" :key="item.id">
-                    <a href="#" class="cat-1">
+                    <a v-bind:href="'/category/'+ item.loaitinkd" :class="item.style">
                       {{item.theloai}}
-                      <span
-                        class="category-custom"                        
-                      >{{item.soluong}}0</span>
+                      <span class="category-custom">{{item.soluong}}0</span>
                     </a>
                   </li>
                 </ul>
@@ -280,7 +274,7 @@
               <div class="tags-widget">
                 <ul>
                   <li v-for="item in loaitinArr" :key="item.id">
-                    <a href="#">{{item.tencd}}</a>
+                    <a v-bind:href="'/category/'+ item.tenkd">{{item.tencd}}</a>
                   </li>
                 </ul>
               </div>
@@ -307,7 +301,8 @@ export default {
       theloaiArr: [],
       catagories: [],
       loaitinArr: [],
-      popularArr: []
+      popularArr: [],
+      commentModel: {}
     };
   },
   created() {

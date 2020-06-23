@@ -30,26 +30,8 @@
                 <li class="active">
                   <a href="/" class="nav-link text-left">Home</a>
                 </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Categories</a>
-                </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Politics</a>
-                </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Business</a>
-                </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Health</a>
-                </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Design</a>
-                </li>
-                <li>
-                  <a href="categories.html" class="nav-link text-left">Sport</a>
-                </li>
-                <li>
-                  <a href="contact.html" class="nav-link text-left">Contact</a>
+                <li v-for="item in menuArr" :key="item.id">
+                  <a v-bind:href="'/category/'+ item.tenkd" class="nav-link text-left">{{item.tencd}}</a>
                 </li>
               </ul>
             </nav>
@@ -60,8 +42,23 @@
   </div>
 </template>
 <script>
+import { HTTP } from "@/api/https";
 export default {
   name: "public-header",
+  data:function() {
+    return {
+      menuArr: []
+    }
+  },
+  created() {
+    HTTP.post("category/menu")
+      .then(res => {
+        if (res === null || res === undefined) {
+          return
+        }
+        this.menuArr = res.data.categorys
+      });
+  },
   methods: {}
 };
 </script>
