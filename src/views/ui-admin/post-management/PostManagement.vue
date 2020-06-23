@@ -7,12 +7,12 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-4">
-              <b-form-group label-for="input14">
-                <b-form-input type="text" placeholder="Tên bài viết, thể loại, loại tin ...."></b-form-input>
-              </b-form-group>
+                <b-form-group label-for="input14">
+                  <b-form-input type="text" placeholder="Tên bài viết, thể loại, loại tin ...."></b-form-input>
+                </b-form-group>
               </div>
               <div class="col-md-4">
-                <b-button variant="info" class="mr-2 btn-sm" @click="search">Tìm kiếm</b-button>
+                <b-button variant="info" class="mr-2 btn-sm">Tìm kiếm</b-button>
               </div>
             </div>
           </div>
@@ -23,7 +23,15 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
+            <div style="margin-bottom: 20px;">
+              <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('chonloc')">Chọn Lọc</b-button>
+              <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('noibat')">Nổi Bật</b-button>
+              <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('slide')">Slide</b-button>
+            </div>
             <b-table bordered hover responsive :items="items" :fields="fields">
+              <template v-slot:cell(checkbox)="data">
+                <b-form-checkbox v-model="data.item.selected" @change="select(data.item)" />
+              </template>
               <template v-slot:cell(img)="data">
                 <img :src="data.item.hinhanh" class="img-post-custom" />
               </template>
@@ -57,6 +65,7 @@ export default {
           key: "id",
           label: "#"
         },
+        { key: "checkbox", label: "#" },
         {
           key: "img",
           label: "Hình ảnh"
@@ -103,6 +112,29 @@ export default {
         return;
       }
       this.items = res.data.posts;
+    },
+
+    select(post) {
+      post.selected = !post.selected;
+    },
+
+    updateStatusPost (key) {
+      let postIDArr = [];
+      this.items.forEach(element => {
+        if (element.selected) {
+          postIDArr.push(element.id);
+        }
+      });
+      let model = {
+        data: postIDArr,
+        key: key
+      };
+      HTTP.post("/post/update-post", model).then(res => {
+        if (res === null || res === undefined) {
+          return;
+        }
+        this.init();
+      });
     }
   }
 };
@@ -112,5 +144,31 @@ export default {
 .img-post-custom {
   width: auto;
   height: 50px;
+}
+</style>
+<style lang="scss">
+.table-responsive {
+  .table {
+    thead {
+      th {
+        text-align: center !important;
+      }
+    }
+    tbody {
+      td {
+        &:hover {
+          cursor: pointer;
+        }
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(6),
+        &:nth-child(7),
+        &:nth-child(8) {
+          text-align: center !important;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -14,18 +14,12 @@
                 <p class="mb-3">{{post.tomtat}}</p>
 
                 <div class="post-meta">
-                  <span class="d-block">
-                    <a href="#" class="author-custom">{{post.nguoitao}}</a> in
-                    <a
-                      href="#"
-                      class="category-custom"
-                      v-bind:class="{'fontend': post.theloaikd == 'fontend', 'backend': post.category == 'backend'}"
-                    >{{post.loaitin}}</a>
-                  </span>
-                  <span class="date-read">
-                    {{post.ngaytao}}
-                    <span class="icon-star2"></span>
-                  </span>
+                  <a
+                    class="post-category"
+                    href="#"
+                    v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                  >{{post.loaitin}}</a>
+                  <span class="post-date">{{post.ngaytao}}</span>
                 </div>
               </div>
             </div>
@@ -41,7 +35,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="section-title">
-                  <h2>Editor's Pick</h2>
+                  <h2>BÀI VIẾT CHỌN LỌC</h2>
                 </div>
               </div>
             </div>
@@ -52,19 +46,16 @@
                     <img :src="editorArr[0].hinhanh" alt="Image" class="img-fluid" />
                   </a>
                   <h2>
-                    <a href="blog-single.html">{{editorArr[0].tencd}}</a>
+                    <a v-bind:href="'/post/'+ editorArr[0].tenkd">{{editorArr[0].tencd}}</a>
                   </h2>
                   <p>{{editorArr[0].tomtat}}</p>
                   <div class="post-meta">
-                    <span class="d-block">
-                      <a href="#">{{editorArr[0].nguoitao}}</a> in
-                      <a href="#">{{editorArr[0].loaitin}}</a>
-                    </span>
-                    <span class="date-read">
-                      {{editorArr[0].ngaytao}}
-                      <span class="mx-1">&bullet;</span> 3 min read
-                      <span class="icon-star2"></span>
-                    </span>
+                    <a
+                      class="post-category"
+                      v-bind:class="{'cat-1': editorArr[0].theloaikd == 'lap-trinh-web', 'cat-2': editorArr[0].theloaikd == 'backend', 'cat-3': editorArr[0].theloaikd == 'co-so-du-lieu'}"
+                      v-bind:href="'/category/'+ editorArr[0].loaitinkd"
+                    >{{editorArr[0].loaitin}}</a>
+                    <span class="post-date">{{editorArr[0].ngaytao}}</span>
                   </div>
                 </div>
               </div>
@@ -78,18 +69,17 @@
                   <div class="thumbnail" :style="post.imgbg"></div>
                   <div class="contents">
                     <h2>
-                      <a href="blog-single.html">{{post.tencd}}</a>
+                      <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                     </h2>
                     <div class="post-meta">
                       <span class="d-block">
-                        <a href="#">{{post.nguoitao}}</a> in
-                        <a href="#">{{post.loaitin}}</a>
+                        <a
+                          class="post-category"
+                          v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                          v-bind:href="'/category/'+ post.loaitinkd"
+                        >{{post.loaitin}}</a>
                       </span>
-                      <span class="date-read">
-                        {{post.ngaytao}}
-                        <span class="mx-1">&bullet;</span> 3 min read
-                        <span class="icon-star2"></span>
-                      </span>
+                      <span class="post-date">{{post.ngaytao}}</span>
                     </div>
                   </div>
                 </div>
@@ -98,28 +88,23 @@
           </div>
           <div class="col-lg-4">
             <div class="section-title">
-              <h2>Trending</h2>
+              <h2>BÀI VIẾT NỖI BẬT</h2>
             </div>
             <div class="trend-entry d-flex" v-for="(post, index) in trendingArr" :key="post.id">
               <div class="number align-self-start">0{{ index + 1 }}</div>
               <div class="trend-contents">
                 <h2>
-                  <a href="blog-single.html">{{post.tencd}}</a>
+                  <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h2>
                 <div class="post-meta">
                   <span class="d-block">
-                    <a href="#" class="author-custom">{{post.nguoitao}}</a> in
                     <a
-                      href="#"
-                      class="category-custom"
-                      v-bind:class="{'fontend': post.theloaikd == 'fontend', 'backend': post.theloaikd == 'backend'}"
+                      class="post-category"
+                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
-                  <span class="date-read">
-                    {{post.ngaytao}}
-                    <span class="mx-1">&bullet;</span> 3 min read
-                    <span class="icon-star2"></span>
-                  </span>
+                  <span class="post-date">{{post.ngaytao}}</span>
                 </div>
               </div>
             </div>
@@ -135,30 +120,27 @@
       </div>
     </div>
     <!-- END section -->
-
     <div class="py-0">
       <div class="container">
         <div class="half-post-entry d-block d-lg-flex bg-light">
-          <div class="img-bg" :style="editorArr[4].imgbg"></div>
+          <div class="img-bg" :style="editorArr[editorArr.length - 1].imgbg"></div>
           <div class="contents">
             <span class="caption">Editor's Pick</span>
             <h2>
-              <a href="blog-single.html">{{editorArr[4].tencd}}</a>
+              <a
+                v-bind:href="'/post/'+ editorArr[editorArr.length - 1].tenkd"
+              >{{editorArr[editorArr.length - 1].tencd}}</a>
             </h2>
-            <p
-              class="mb-3"
-            >{{editorArr[4].tomtat}}</p>
-
+            <p class="mb-3">{{editorArr[editorArr.length - 1].tomtat}}</p>
             <div class="post-meta">
               <span class="d-block">
-                <a href="#">{{editorArr[4].nguoitao}}</a> in
-                <a href="#">{{editorArr[4].loaitin}}</a>
+                <a
+                  class="post-category"
+                  v-bind:class="{'cat-1': editorArr[editorArr.length - 1].theloaikd == 'lap-trinh-web', 'cat-2': editorArr[editorArr.length - 1].theloaikd == 'backend', 'cat-3': editorArr[editorArr.length - 1].theloaikd == 'co-so-du-lieu'}"
+                  v-bind:href="'/category/'+ editorArr[editorArr.length - 1].loaitinkd"
+                >{{editorArr[editorArr.length - 1].loaitin}}</a>
               </span>
-              <span class="date-read">
-                {{editorArr[4].ngaytao}}
-                <span class="mx-1">&bullet;</span> 3 min read
-                <span class="icon-star2"></span>
-              </span>
+              <span class="post-date">{{editorArr[editorArr.length - 1].ngaytao}}</span>
             </div>
           </div>
         </div>
@@ -176,21 +158,18 @@
               <div class="thumbnail" :style="item.imgbg"></div>
               <div class="contents">
                 <h2>
-                  <a href="blog-single.html">{{item.tencd}}</a>
+                  <a v-bind:href="'/post/'+ post.tenkd">{{item.tencd}}</a>
                 </h2>
-                <p
-                  class="mb-3"
-                >{{item.tomtat}}</p>
+                <p class="mb-3">{{item.tomtat}}</p>
                 <div class="post-meta">
                   <span class="d-block">
-                    <a href="#">{{item.nguoitao}}</a> in
-                    <a href="#">{{item.loaitin}}</a>
+                    <a
+                      class="post-category"
+                      v-bind:class="{'cat-1': item.theloaikd == 'lap-trinh-web', 'cat-2': item.theloaikd == 'backend', 'cat-3': item.theloaikd == 'co-so-du-lieu'}"
+                      v-bind:href="'/category/'+ item.loaitinkd"
+                    >{{item.loaitin}}</a>
                   </span>
-                  <span class="date-read">
-                    {{item.ngaytao}}
-                    <span class="mx-1">&bullet;</span> 3 min read
-                    <span class="icon-star2"></span>
-                  </span>
+                  <span class="post-date">{{item.ngaytao}}</span>
                 </div>
               </div>
             </div>
@@ -207,27 +186,21 @@
               <h2>Recent News</h2>
             </div>
             <div class="post-entry-2 d-flex" v-for="post in recentArr" :key="post.id">
-              <div
-                class="thumbnail"
-                :style="post.imgbg"
-              ></div>
+              <div class="thumbnail" :style="post.imgbg"></div>
               <div class="contents">
                 <h2>
-                  <a href="blog-single.html">{{post.tencd}}</a>
+                  <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h2>
-                <p
-                  class="mb-3"
-                >{{post.tomtat}}</p>
+                <p class="mb-3">{{post.tomtat}}</p>
                 <div class="post-meta">
                   <span class="d-block">
-                    <a href="#">{{post.nguoitao}}</a> in
-                    <a href="#">{{post.loaitin}}</a>
+                    <a
+                      class="post-category"
+                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      v-bind:href="'/category/'+ post.loaitinkd"
+                    >{{post.loaitin}}</a>
                   </span>
-                  <span class="date-read">
-                    {{post.ngaytao}}
-                    <span class="mx-1">&bullet;</span> 3 min read
-                    <span class="icon-star2"></span>
-                  </span>
+                  <span class="post-date">{{post.ngaytao}}</span>
                 </div>
               </div>
             </div>
@@ -241,18 +214,17 @@
               <div class="number align-self-start">0{{index}}</div>
               <div class="trend-contents">
                 <h2>
-                  <a href="blog-single.html">{{post.tencd}}</a>
+                  <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h2>
                 <div class="post-meta">
                   <span class="d-block">
-                    <a href="#">{{post.nguoitao}}</a> in
-                    <a href="#">{{post.loaitin}}</a>
+                    <a
+                      class="post-category"
+                      v-bind:class="{'cat-1': post.theloaikd == 'lap-trinh-web', 'cat-2': post.theloaikd == 'backend', 'cat-3': post.theloaikd == 'co-so-du-lieu'}"
+                      v-bind:href="'/category/'+ post.loaitinkd"
+                    >{{post.loaitin}}</a>
                   </span>
-                  <span class="date-read">
-                    {{post.ngaytao}}
-                    <span class="mx-1">&bullet;</span> 3 min read
-                    <span class="icon-star2"></span>
-                  </span>
+                  <span class="post-date">{{post.ngaytao}}</span>
                 </div>
               </div>
             </div>
@@ -351,7 +323,7 @@ export default {
       this.trendingArr.forEach(element => {
         element.imgbg = "background-image: url('" + element.hinhanh + "')";
       });
-    
+
       // RECENT
       this.recentArr = data.recent;
       this.recentArr.forEach(element => {
@@ -365,7 +337,7 @@ export default {
       });
 
       // CATEGORY
-      this.categoryArr = data.category
+      this.categoryArr = data.category;
       this.categoryArr.forEach(element => {
         element["data"].forEach(item => {
           item.imgbg = "background-image: url('" + item.hinhanh + "')";

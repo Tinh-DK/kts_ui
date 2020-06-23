@@ -75,7 +75,7 @@
             <div class="row">
               <div class="col-md-4">
                 <b-form-group label="">
-                  <b-form-select :options="delOption" v-model="delFlg" />
+                  <b-form-select :options="delOption" v-model="usingFlg" />
                 </b-form-group>
               </div>
               <div class="col-md-4">
@@ -124,13 +124,13 @@ export default {
   },
   data() {
     return {
-      delFlg: "",
+      usingFlg: '',
       userModel: {},
       roleOption: [],
       delOption: [
-        { value: "", text: "All" },
-        { value: 0, text: "Active" },
-        { value: 1, text: "Inactive" }
+        { value: '', text: "All" },
+        { value: 1, text: "Active" },
+        { value: 0, text: "Inactive" }
       ],
       items: [],
       fields: [
@@ -193,7 +193,7 @@ export default {
 
     search() {
       let param = {
-        del_flg: this.delFlg
+        usingFlg: this.usingFlg
       };
       HTTP.post("user/search", param).then(this.handleSearchSuccess);
     },
@@ -236,7 +236,7 @@ export default {
         this.userModel.tendangnhap === undefined ||
         this.userModel.matkhau === undefined ||
         this.userModel.tenhienthi === undefined ||
-        this.userModel.roleid === undefined
+        this.userModel.idphanquyen === undefined
       ) {
         return;
       }

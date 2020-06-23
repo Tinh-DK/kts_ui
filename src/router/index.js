@@ -43,6 +43,7 @@ import ParentCategory from '../views/ui-admin/category-parent/CategoryParent'
 import SubCategory from '../views/ui-admin/category-sub/CategorySub'
 import Post from '../views/ui-public/post/Post'
 import Home from '../views/ui-public/home/Home'
+import Category from '../views/ui-public/category/Category'
 
 Vue.use(Router)
 export default new Router({
@@ -67,6 +68,11 @@ export default new Router({
           path: '/post/:tenkd',
           name: 'post',
           component: Post
+        },
+        {
+          path: '/category/:tenkd',
+          name: 'category',
+          component: Category
         },
       ]
     },

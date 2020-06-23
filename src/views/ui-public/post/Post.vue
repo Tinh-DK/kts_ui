@@ -266,8 +266,7 @@
                     <a href="#" class="cat-1">
                       {{item.theloai}}
                       <span
-                        class="category-custom"
-                        v-bind:class="{'fontend': item.theloai == 'Fontend', 'backend': item.theloai == 'Backend'}"
+                        class="category-custom"                        
                       >{{item.soluong}}0</span>
                     </a>
                   </li>
