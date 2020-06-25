@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-        <PublicHeader/>
-        <router-view />
-        <PublicFooter/>
+      <PublicHeader/>
+      <router-view />
+      <PublicFooter/>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 import PublicHeader from '../partials/PublicHead'
 import PublicFooter from '../partials/PublicFooter'
 export default{
-  name: 'Layout',
+  name: 'public',
   components: {
     PublicHeader,
     PublicFooter

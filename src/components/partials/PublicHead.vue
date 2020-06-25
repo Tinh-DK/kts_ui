@@ -28,10 +28,16 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                 <li class="active">
-                  <a href="/" class="nav-link text-left">Home</a>
+                  <a href="/" class="nav-link text-left">Trang Chủ</a>
                 </li>
                 <li v-for="item in menuArr" :key="item.id">
                   <a v-bind:href="'/category/'+ item.tenkd" class="nav-link text-left">{{item.tencd}}</a>
+                </li>
+                <li class="active">
+                  <a href="/" class="nav-link text-left">About</a>
+                </li>
+                <li class="active">
+                  <a href="/" class="nav-link text-left">Contact</a>
                 </li>
               </ul>
             </nav>

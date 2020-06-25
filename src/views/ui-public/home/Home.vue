@@ -31,6 +31,41 @@
     <div class="site-section">
       <div class="container">
         <div class="row">
+          <div class="col-md-12">
+            <div class="section-title">
+              <h2>Bài Viết Mới Nhất</h2>
+            </div>
+          </div>
+
+          <!-- post -->
+          <div class="col-md-3" v-for="post in recentArr" :key="post.id">
+            <div class="post">
+              <a class="post-img" href="blog-post.html">
+                <img :src="post.hinhanh" alt />
+              </a>
+              <div class="post-body">
+                <div class="post-meta">
+                  <span class="d-block">
+                    <a
+                      class="post-category"
+                      :class="post.style"
+                      v-bind:href="'/category/'+ post.loaitinkd"
+                    >{{post.loaitin}}</a>
+                  </span>
+                  <span class="post-date">{{post.ngaytao}}</span>
+                </div>
+                <h3 class="post-title">
+                  <a href="blog-post.html">{{post.tencd}}</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-section" v-if="editorArr.length > 0">
+      <div class="container">
+        <div class="row">
           <div class="col-lg-8">
             <div class="row">
               <div class="col-12">
@@ -120,7 +155,7 @@
       </div>
     </div>
     <!-- END section -->
-    <div class="py-0">
+    <div class="py-0" v-if="editorArr.length > 0">
       <div class="container">
         <div class="half-post-entry d-block d-lg-flex bg-light">
           <div class="img-bg" :style="editorArr[editorArr.length - 1].imgbg"></div>
@@ -147,29 +182,59 @@
       </div>
     </div>
 
-    <div class="site-section">
+    <div class="site-section" v-for="post in categoryArr" :key="post.name">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6" v-for="post in categoryArr" :key="post.name">
-            <div class="section-title">
-              <h2>{{post.name}}</h2>
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-12">
+                <div class="section-title">
+                  <h2>{{post.name}}</h2>
+                </div>
+              </div>
             </div>
-            <div class="post-entry-2 d-flex" v-for="item in post.data" :key="item.id">
-              <div class="thumbnail" :style="item.imgbg"></div>
-              <div class="contents">
-                <h2>
-                  <a v-bind:href="'/post/'+ post.tenkd">{{item.tencd}}</a>
-                </h2>
-                <p class="mb-3">{{item.tomtat}}</p>
-                <div class="post-meta">
-                  <span class="d-block">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="post-entry-1">
+                  <a href="post-single.html">
+                    <img :src="post.data[0].hinhanh" alt="Image" class="img-fluid" />
+                  </a>
+                  <h2>
+                    <a v-bind:href="'/post/'+ post.data[0].tenkd">{{post.data[0].tencd}}</a>
+                  </h2>
+                  <p>{{post.data[0].tomtat}}</p>
+                  <div class="post-meta">
                     <a
                       class="post-category"
-                      :class="item.style"
-                      v-bind:href="'/category/'+ item.loaitinkd"
-                    >{{item.loaitin}}</a>
-                  </span>
-                  <span class="post-date">{{item.ngaytao}}</span>
+                      :class="post.data[0].style"
+                      v-bind:href="'/category/'+ post.data[0].loaitinkd"
+                    >{{post.data[0].loaitin}}</a>
+                    <span class="post-date">{{post.data[0].ngaytao}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="post-entry-2 d-flex"
+                  v-for="(subpost) in post.data"
+                  :key="subpost.id"
+                >
+                  <div class="thumbnail" :style="subpost.imgbg"></div>
+                  <div class="contents">
+                    <h2>
+                      <a v-bind:href="'/post/'+ subpost.tenkd">{{subpost.tencd}}</a>
+                    </h2>
+                    <div class="post-meta">
+                      <span class="d-block">
+                        <a
+                          class="post-category"
+                          :class="subpost.style"
+                          v-bind:href="'/category/'+ subpost.loaitinkd"
+                        >{{subpost.loaitin}}</a>
+                      </span>
+                      <span class="post-date">{{subpost.ngaytao}}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
