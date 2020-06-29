@@ -94,96 +94,42 @@
               </div>
             </div>
             <!-- /author -->
-
-            <!-- comments -->
-            <div class="section-row">
-              <div class="section-title">
-                <h2>3 Comments</h2>
-              </div>
-
-              <div class="post-comments">
-                <!-- comment -->
-                <div class="media">
-                  <div class="media-left">
-                    <img class="media-object" src="@/assets/img/avatar.png" alt />
-                  </div>
-                  <div class="media-body">
-                    <div class="media-heading">
-                      <h4>John Doe</h4>
-                      <span class="time">March 27, 2018 at 8:00 am</span>
-                      <a href="#" class="reply">Reply</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    <!-- comment -->
-                    <div class="media">
-                      <div class="media-left">
-                        <img class="media-object" src="@/assets/img/avatar.png" alt />
-                      </div>
-                      <div class="media-body">
-                        <div class="media-heading">
-                          <h4>John Doe</h4>
-                          <span class="time">March 27, 2018 at 8:00 am</span>
-                          <a href="#" class="reply">Reply</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      </div>
-                    </div>
-                    <!-- /comment -->
-                  </div>
-                </div>
-                <!-- /comment -->
-
-                <!-- comment -->
-                <div class="media">
-                  <div class="media-left">
-                    <img class="media-object" src="@/assets/img/avatar.png" alt />
-                  </div>
-                  <div class="media-body">
-                    <div class="media-heading">
-                      <h4>John Doe</h4>
-                      <span class="time">March 27, 2018 at 8:00 am</span>
-                      <a href="#" class="reply">Reply</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  </div>
-                </div>
-                <!-- /comment -->
-              </div>
-            </div>
-            <!-- /comments -->
-
+            <CommentPost :data="commentArr"></CommentPost>
             <!-- reply -->
             <div class="section-row">
               <div class="section-title">
-                <h2>Leave a reply</h2>
-                <p>your email address will not be published. required fields are marked *</p>
+                <h2>Bình Luận</h2>
               </div>
               <div class="post-reply">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Name *</span>
-                      <input class="input" type="text" name="name" v-model="commentModel.name"/>
+                      <input class="input" type="text" name="name" v-model="commentModel.name" />
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Email *</span>
-                      <input class="input" type="email" name="email" v-model="commentModel.email"/>
+                      <input class="input" type="email" name="email" v-model="commentModel.email" />
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <span>Website</span>
-                      <input class="input" type="text" name="website" v-model="commentModel.website"/>
+                      <input
+                        class="input"
+                        type="text"
+                        name="website"
+                        v-model="commentModel.website"
+                      />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <textarea class="input" name="message" v-model="commentModel.content"></textarea>
                     </div>
-                    <button class="primary-button">Submit</button>
+                    <button class="primary-button" @click="addComment(content.id, null)">Submit</button>
                   </div>
                 </div>
               </div>
@@ -208,7 +154,7 @@
                 <h2>Trending</h2>
               </div>
               <div class="trend-entry d-flex" v-for="(post, index) in popularArr" :key="post.id">
-                <div class="number align-self-start">0{{index}}</div>
+                <div class="number align-self-start">0{{index + 1}}</div>
                 <div class="trend-contents">
                   <h2>
                     <a href="blog-single.html">{{post.tencd}}</a>
@@ -292,9 +238,12 @@
 </template>
 <script>
 import { HTTP } from "@/api/https";
+import CommentPost from '../../../components/comment/CommentPost'
 export default {
   name: "Post",
-  components: {},
+  components: {
+    CommentPost
+  },
   data: function() {
     return {
       content: "",
@@ -302,35 +251,52 @@ export default {
       catagories: [],
       loaitinArr: [],
       popularArr: [],
+      commentArr: [],
       commentModel: {}
     };
   },
   created() {
     let tenkd = this.$route.params.tenkd;
-    HTTP.get("/post/" + tenkd).then(res => {
-      if (res === null || res === undefined) {
-        return;
-      }
-      let datapost = res.data.datapost;
+    this.init(tenkd);
+  },
+  methods: {
+    init(name) {
+      HTTP.get("/post/" + name).then(res => {
+        if (res === null || res === undefined) {
+          return;
+        }
+        debugger;
+        let datapost = res.data.datapost;
 
-      // RECENT POST
-      let post = datapost.post;
-      if (post.length === 0) {
-        return;
-      }
-      this.content = post[0];
+        // RECENT POST
+        let post = datapost.post;
+        if (post.length === 0) {
+          return;
+        }
+        this.content = post[0];
 
-      // CÙNG CHUYÊN MỤC
-      this.theloaiArr = datapost.post_category;
+        // CÙNG CHUYÊN MỤC
+        this.theloaiArr = datapost.post_category;
 
-      // SỐ LƯỢNG THEO THỂ LOẠI
-      this.catagories = datapost.theloai;
+        // SỐ LƯỢNG THEO THỂ LOẠI
+        this.catagories = datapost.theloai;
 
-      // LOẠI TIN
-      this.loaitinArr = datapost.loaitin;
-      // POPULAR
-      this.popularArr = datapost.popular;
-    });
+        // LOẠI TIN
+        this.loaitinArr = datapost.loaitin;
+        // POPULAR
+        this.popularArr = datapost.popular;
+        // COMMENT
+        this.commentArr = datapost.comments;
+      });
+    },
+
+    addComment(post_id, parent_id) {
+      this.commentModel["post-id"] = post_id;
+      this.commentModel["parent-id"] = parent_id;
+      HTTP.post("post/add-comment", this.commentModel).then(res => {
+        this.commentArr = res.data.comments
+      });
+    }
   }
 };
 </script>

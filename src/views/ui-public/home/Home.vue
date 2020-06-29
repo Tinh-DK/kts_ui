@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Slide -->
     <carousel :per-page="1" :mouse-drag="false">
       <slide v-for="post in slideArr" :key="post.id">
         <div class="site-section">
@@ -27,7 +28,9 @@
         </div>
       </slide>
     </carousel>
+    <!-- End Slide -->
 
+    <!-- Bai viet moi nhat -->
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -40,7 +43,7 @@
           <!-- post -->
           <div class="col-md-3" v-for="post in recentArr" :key="post.id">
             <div class="post">
-              <a class="post-img" href="blog-post.html">
+              <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
                 <img :src="post.hinhanh" alt />
               </a>
               <div class="post-body">
@@ -55,7 +58,7 @@
                   <span class="post-date">{{post.ngaytao}}</span>
                 </div>
                 <h3 class="post-title">
-                  <a href="blog-post.html">{{post.tencd}}</a>
+                  <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h3>
               </div>
             </div>
@@ -63,6 +66,7 @@
         </div>
       </div>
     </div>
+    <!-- End bai viet moi nhat -->
     <div class="site-section" v-if="editorArr.length > 0">
       <div class="container">
         <div class="row">
@@ -77,7 +81,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="post-entry-1">
-                  <a href="post-single.html">
+                  <a v-bind:href="'/post/'+ editorArr[0].tenkd">
                     <img :src="editorArr[0].hinhanh" alt="Image" class="img-fluid" />
                   </a>
                   <h2>
@@ -196,7 +200,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="post-entry-1">
-                  <a href="post-single.html">
+                  <a v-bind:href="'/post/'+ post.data[0].tenkd">
                     <img :src="post.data[0].hinhanh" alt="Image" class="img-fluid" />
                   </a>
                   <h2>
@@ -214,11 +218,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div
-                  class="post-entry-2 d-flex"
-                  v-for="(subpost) in post.data"
-                  :key="subpost.id"
-                >
+                <div class="post-entry-2 d-flex" v-for="(subpost) in post.data" :key="subpost.id">
                   <div class="thumbnail" :style="subpost.imgbg"></div>
                   <div class="contents">
                     <h2>
@@ -272,7 +272,7 @@
           </div>
           <div class="col-lg-3">
             <div class="section-title">
-              <h2>Popular Posts</h2>
+              <h2>Bài Viết Phổ Biến</h2>
             </div>
 
             <div class="trend-entry d-flex" v-for="(post, index) in popularArr" :key="post.id">
