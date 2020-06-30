@@ -159,14 +159,14 @@ export default {
         &:hover {
           cursor: pointer;
         }
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3),
-        &:nth-child(7),
-        &:nth-child(8),
-        &:nth-child(9) {
-          text-align: center !important;
-        }
+        // &:nth-child(1),
+        // &:nth-child(2),
+        // &:nth-child(3),
+        // &:nth-child(7),
+        // &:nth-child(8),
+        // &:nth-child(9) {
+        //   text-align: center !important;
+        // }
       }
     }
   }

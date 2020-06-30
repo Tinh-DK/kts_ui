@@ -253,7 +253,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .table-responsive {
   border-top: 1px solid #f3f3f3;
   .table {

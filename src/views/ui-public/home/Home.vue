@@ -193,7 +193,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="post-meta section-title">
-                  <span class="d-block">
+                  <span class="d-block category-custom-style">
                     <span class="post-category" :class="post.style">{{post.name}}</span>
                   </span>
                 </div>
@@ -434,5 +434,8 @@ export default {
   &.backend {
     color: #ff8700 !important;
   }
+}
+.category-custom-style {
+  border-bottom: 1px solid teal;
 }
 </style>
