@@ -20,7 +20,7 @@
                     v-bind:href="'/category/'+ post.loaitinkd"
                     :class="post.style"
                   >{{post.loaitin}}</a>
-                  <span class="post-date">{{post.ngaytao}}</span>
+                  <span class="post-date">{{post.ngaytao | formatDate}}</span>
                 </div>
               </div>
             </div>
@@ -55,7 +55,7 @@
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
-                  <span class="post-date">{{post.ngaytao}}</span>
+                  <span class="post-date">{{post.ngaytao | formatDate}}</span>
                 </div>
                 <h3 class="post-title">
                   <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
@@ -94,7 +94,7 @@
                       :class="editorArr[0].style"
                       v-bind:href="'/category/'+ editorArr[0].loaitinkd"
                     >{{editorArr[0].loaitin}}</a>
-                    <span class="post-date">{{editorArr[0].ngaytao}}</span>
+                    <span class="post-date">{{editorArr[0].ngaytao | formatDate}}</span>
                   </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@
                           v-bind:href="'/category/'+ post.loaitinkd"
                         >{{post.loaitin}}</a>
                       </span>
-                      <span class="post-date">{{post.ngaytao}}</span>
+                      <span class="post-date">{{post.ngaytao | formatDate}}</span>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
-                  <span class="post-date">{{post.ngaytao}}</span>
+                  <span class="post-date">{{post.ngaytao | formatDate}}</span>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@
                   v-bind:href="'/category/'+ editorArr[editorArr.length - 1].loaitinkd"
                 >{{editorArr[editorArr.length - 1].loaitin}}</a>
               </span>
-              <span class="post-date">{{editorArr[editorArr.length - 1].ngaytao}}</span>
+              <span class="post-date">{{editorArr[editorArr.length - 1].ngaytao | formatDate}}</span>
             </div>
           </div>
         </div>
@@ -192,8 +192,10 @@
           <div class="col-lg-12">
             <div class="row">
               <div class="col-12">
-                <div class="section-title">
-                  <h2>{{post.name}}</h2>
+                <div class="post-meta section-title">
+                  <span class="d-block">
+                    <span class="post-category" :class="post.style">{{post.name}}</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -213,7 +215,7 @@
                       :class="post.data[0].style"
                       v-bind:href="'/category/'+ post.data[0].loaitinkd"
                     >{{post.data[0].loaitin}}</a>
-                    <span class="post-date">{{post.data[0].ngaytao}}</span>
+                    <span class="post-date">{{post.data[0].ngaytao | formatDate}}</span>
                   </div>
                 </div>
               </div>
@@ -232,7 +234,7 @@
                           v-bind:href="'/category/'+ subpost.loaitinkd"
                         >{{subpost.loaitin}}</a>
                       </span>
-                      <span class="post-date">{{subpost.ngaytao}}</span>
+                      <span class="post-date">{{subpost.ngaytao | formatDate}}</span>
                     </div>
                   </div>
                 </div>
@@ -265,7 +267,7 @@
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
-                  <span class="post-date">{{post.ngaytao}}</span>
+                  <span class="post-date">{{post.ngaytao | formatDate}}</span>
                 </div>
               </div>
             </div>
@@ -289,7 +291,7 @@
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
                   </span>
-                  <span class="post-date">{{post.ngaytao}}</span>
+                  <span class="post-date">{{post.ngaytao | formatDate}}</span>
                 </div>
               </div>
             </div>
@@ -345,6 +347,7 @@
 <script>
 import { Carousel, Slide } from "vue-carousel";
 import { HTTP } from "@/api/https";
+import moment from "moment";
 export default {
   name: "home",
   data: function() {
@@ -359,6 +362,13 @@ export default {
   },
   created() {
     this.init();
+  },
+  filters: {
+    formatDate: function(value) {
+      if (value) {
+        return moment(String(value)).format("YYYY/MM/DD hh:mm:ss");
+      }
+    }
   },
   methods: {
     init() {

@@ -253,7 +253,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .table-responsive {
   border-top: 1px solid #f3f3f3;
   .table {
@@ -274,9 +274,9 @@ export default {
           cursor: pointer;
         }
         &:nth-child(1),
-        &:nth-child(4),
         &:nth-child(5),
-        &:nth-child(6) {
+        &:nth-child(6),
+        &:nth-child(7) {
           text-align: center !important;
         }
       }

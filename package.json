@@ -21,15 +21,16 @@
     "flag-icon-css": "2.9.0",
     "font-awesome": "4.7.0",
     "mdi": "2.1.19",
+    "moment": "^2.27.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue": "^2.5.2",
+    "vue-carousel": "^0.18.0",
     "vue-md-date-picker": "1.0.15",
     "vue-router": "^3.0.1",
     "vue-simple-alert": "^1.1.1",
     "webpack-cli": "^3.3.11",
-    "yimo-vue-editor": "^1.1.5",
-    "vue-carousel": "^0.18.0"
+    "yimo-vue-editor": "^1.1.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -93,50 +93,43 @@
                 </div>
               </div>
             </div>
-            <!-- /author -->
-            <CommentPost :data="commentArr"></CommentPost>
-            <!-- reply -->
-            <div class="section-row">
-              <div class="section-title">
-                <h2>Bình Luận</h2>
-              </div>
-              <div class="post-reply">
+            <div class="site-section">
+              <div class="container">
                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <span>Name *</span>
-                      <input class="input" type="text" name="name" v-model="commentModel.name" />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <span>Email *</span>
-                      <input class="input" type="email" name="email" v-model="commentModel.email" />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <span>Website</span>
-                      <input
-                        class="input"
-                        type="text"
-                        name="website"
-                        v-model="commentModel.website"
-                      />
-                    </div>
-                  </div>
                   <div class="col-md-12">
-                    <div class="form-group">
-                      <textarea class="input" name="message" v-model="commentModel.content"></textarea>
+                    <div class="section-title">
+                      <h2>Bài viết liên quan</h2>
                     </div>
-                    <button class="primary-button" @click="addComment(content.id, null)">Submit</button>
+                  </div>
+
+                  <!-- post -->
+                  <div class="col-md-3" v-for="post in popularArr" :key="post.id">
+                    <div class="post">
+                      <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
+                        <img :src="post.hinhanh" alt />
+                      </a>
+                      <div class="post-body">
+                        <div class="post-meta">
+                          <span class="d-block">
+                            <a
+                              class="post-category"
+                              :class="post.style"
+                              v-bind:href="'/category/'+ post.loaitinkd"
+                            >{{post.loaitin}}</a>
+                          </span>
+                          <span class="post-date">{{post.ngaytao}}</span>
+                        </div>
+                        <h3 class="post-title">
+                          <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
+                        </h3>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- /reply -->
+            <CommentPost :model="commentArr" :postid="content.id"></CommentPost>
           </div>
-          <!-- /Post content -->
 
           <!-- aside -->
           <div class="col-md-4">
@@ -238,7 +231,7 @@
 </template>
 <script>
 import { HTTP } from "@/api/https";
-import CommentPost from '../../../components/comment/CommentPost'
+import CommentPost from "../../../components/comment/CommentPost";
 export default {
   name: "Post",
   components: {
@@ -265,7 +258,6 @@ export default {
         if (res === null || res === undefined) {
           return;
         }
-        debugger;
         let datapost = res.data.datapost;
 
         // RECENT POST
@@ -287,14 +279,6 @@ export default {
         this.popularArr = datapost.popular;
         // COMMENT
         this.commentArr = datapost.comments;
-      });
-    },
-
-    addComment(post_id, parent_id) {
-      this.commentModel["post-id"] = post_id;
-      this.commentModel["parent-id"] = parent_id;
-      HTTP.post("post/add-comment", this.commentModel).then(res => {
-        this.commentArr = res.data.comments
       });
     }
   }

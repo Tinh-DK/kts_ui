@@ -735,7 +735,7 @@ textarea.input {
 \*----------------------------*/
 .post-comments .media {
     padding-top: 15px;
-    border-top: 1px solid #eceef2;
+    /* border-top: 1px solid #eceef2; */
 }
 .post-comments .media:nth-child(1) {
     padding-top: 0px;

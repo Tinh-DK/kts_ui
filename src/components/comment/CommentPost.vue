@@ -1,13 +1,18 @@
 <template>
   <div>
     <div class="section-row">
-      <div class="section-title">
-        <h2>3 Comments</h2>
+      <div class="add-comment" v-if="!displayReply">
+        <h3>Bình Luận</h3>
+        <add-comment :post="postid" @on-add="handleAdd"></add-comment>
       </div>
-
       <div class="post-comments">
         <!-- comment -->
-        <div class="media" v-for="comment in data" :key="comment.id">
+        <div
+          :v-if="model.length > 0"
+          class="media"
+          v-for="(comment, index) in model"
+          :key="comment.id"
+        >
           <div class="media-left">
             <img class="media-object" src="@/assets/img/avatar.png" alt />
           </div>
@@ -15,26 +20,31 @@
             <div class="media-heading">
               <h4>{{comment.nguoitao}}</h4>
               <span class="time">{{comment.ngaytao}}</span>
-              <a href="#" class="reply" @click="reply(comment.id, comment.idbaiviet)">Reply</a>
+              <a class="reply" @click="reply(comment.id, comment.idbaiviet, index)">Reply</a>
             </div>
             <p>{{comment.noidung}}</p>
-            <div class="add-comment" v-if="displayReply">
-              <add-comment></add-comment>
-            </div>
-
             <!-- comment -->
-            <div class="media" v-if="comment.sub-comment.length > 0">
+            <div class="media" v-for="(sub, subindex) in comment['sub-comment']" :key="sub.id">
               <div class="media-left">
                 <img class="media-object" src="@/assets/img/avatar.png" alt />
               </div>
               <div class="media-body">
                 <div class="media-heading">
-                  <h4>John Doe</h4>
-                  <span class="time">March 27, 2018 at 8:00 am</span>
-                  <a href="#" class="reply">Reply</a>
+                  <h4>{{sub.nguoitao}}</h4>
+                  <span class="time">{{sub.ngaytao}}</span>
+                  <a
+                    class="reply"
+                    @click="subreply(index, sub.id, comment.id, comment.idbaiviet, subindex)"
+                  >Reply</a>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>{{sub.noidung}}</p>
+                <div class="add-comment" v-if="displayReply && subindex === isubIndex">
+                  <add-comment :post="postid" :parent="comment.id" @on-add="handleAdd"></add-comment>
+                </div>
               </div>
+            </div>
+            <div class="add-comment" v-if="displayReply && index === iIndex">
+              <add-comment :post="postid" :parent="comment.id" @on-add="handleAdd"></add-comment>
             </div>
             <!-- /comment -->
           </div>
@@ -51,16 +61,47 @@ export default {
   components: {
     AddComment
   },
-  data: function (params) {
+  data: function(params) {
     return {
-      displayReply: false
-    }
+      displayReply: false,
+      iIndex: "",
+      isubIndex: "",
+      dataComment: {}
+    };
   },
-  props: ["data"],
+  props: ["model", "postid"],
   methods: {
-    reply(id, idbaiviet) {
-      this.displayReply = true
+    reply(id, idbaiviet, index) {
+      this.model.forEach((element, tem) => {
+        if (tem === index) {
+          this.iIndex = tem;
+          this.displayReply = true;
+          this.parentid = element.id;
+        }
+      });
+    },
+
+    subreply(index, subid, id, idbaiviet, subindex) {
+      let subdata = this.model[index];
+      subdata["sub-comment"].forEach((element1, tem1) => {
+        if (tem1 === subindex) {
+          this.isubIndex = tem1;
+          this.displayReply = true;
+          this.parentid = id;
+        }
+      });
+    },
+
+    handleAdd(commentList) {
+      this.model = commentList;
+      this.displayReply = false;
     }
   }
 };
 </script>
+<style scoped>
+a:hover {
+  cursor: pointer;
+  color: blue;
+}
+</style>
