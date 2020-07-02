@@ -27,10 +27,11 @@
               <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('chonloc')">Chọn Lọc</b-button>
               <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('noibat')">Nổi Bật</b-button>
               <b-button variant="secondary" class="mr-2 btn-sm" @click="updateStatusPost('slide')">Slide</b-button>
+              <b-button variant="secondary" class="mr-2 btn-sm" href="/">Trang Bài Viết</b-button>
             </div>
             <b-table bordered hover responsive :items="items" :fields="fields">
               <template v-slot:cell(checkbox)="data">
-                <b-form-checkbox v-model="data.item.selected" @change="select(data.item)" />
+                <b-form-checkbox v-model="data.item.selected" @change="select(data.item)"/>
               </template>
               <template v-slot:cell(img)="data">
                 <img :src="data.item.hinhanh" class="img-post-custom" />
@@ -133,7 +134,8 @@ export default {
         if (res === null || res === undefined) {
           return;
         }
-        this.init();
+        this.items = []
+        this.init()
       });
     }
   }

@@ -170,6 +170,7 @@ export default {
       tenkd_tem = tenkd_tem.toLowerCase();
       let tem = tenkd_tem.replace(/ /g, "-")
       this.postModel.tenkd = tem;
+      this.postModel['user-login'] = sessionStorage.getItem('idnguoidung')
       HTTP.post("post/add", this.postModel)
         .then(this.responseSuccess)
         .catch(this.responseError);

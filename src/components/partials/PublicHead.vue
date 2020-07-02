@@ -1,5 +1,22 @@
 <template>
   <div class="header-top">
+    <div>
+      <div class="container">
+        <div class="col-12 col-lg-6 ml-auto d-flex">
+          <div class="ml-md-auto top-social d-none d-lg-inline-block">
+            <a href="#" class="d-inline-block p-3">
+              <span class="fa fa-facebook"></span>
+            </a>
+            <a href="#" class="d-inline-block p-3">
+              <span class="fa fa-twitter"></span>
+            </a>
+            <a href="#" class="d-inline-block p-3">
+              <span class="fa fa-instagram"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-lg-4 d-flex">
@@ -13,7 +30,7 @@
           </a>
         </div>
         <div class="col-12 col-lg-8 ml-auto d-flex">
-          <img src="http://placehold.it/740x100" alt/>
+          <img src="http://placehold.it/740x100" alt />
         </div>
       </div>
     </div>
@@ -25,19 +42,16 @@
       <div class="container">
         <div class="d-flex align-items-center">
           <div class="mr-auto">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+            <nav class="site-navigation position-relative" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                 <li class="active">
                   <a href="/" class="nav-link text-left">Trang Chủ</a>
                 </li>
                 <li v-for="item in menuArr" :key="item.id">
-                  <a v-bind:href="'/category/'+ item.tenkd" class="nav-link text-left">{{item.tencd}}</a>
-                </li>
-                <li class="active">
-                  <a href="/" class="nav-link text-left">About</a>
-                </li>
-                <li class="active">
-                  <a href="/" class="nav-link text-left">Contact</a>
+                  <a
+                    v-bind:href="'/category/'+ item.tenkd"
+                    class="nav-link text-left"
+                  >{{item.tencd}}</a>
                 </li>
               </ul>
             </nav>
@@ -51,19 +65,18 @@
 import { HTTP } from "@/api/https";
 export default {
   name: "public-header",
-  data:function() {
+  data: function() {
     return {
       menuArr: []
-    }
+    };
   },
   created() {
-    HTTP.post("category/menu")
-      .then(res => {
-        if (res === null || res === undefined) {
-          return
-        }
-        this.menuArr = res.data.categorys
-      });
+    HTTP.post("category/menu").then(res => {
+      if (res === null || res === undefined) {
+        return;
+      }
+      this.menuArr = res.data.categorys;
+    });
   },
   methods: {}
 };

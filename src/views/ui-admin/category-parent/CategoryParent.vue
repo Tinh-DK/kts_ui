@@ -18,7 +18,7 @@
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-1">
                 <b-form-group label="Sử dụng" label-for="input14">
                   <input
                     type="checkbox"
@@ -28,7 +28,15 @@
                   />
                 </b-form-group>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-2">
+                <b-form-group horizontal label="Danh mục" label-for="input14">
+                  <b-form-select
+                    v-model="categoryModel.style"
+                    :options="styleOption"
+                  />
+                </b-form-group>
+              </div>
+              <div class="col-md-4" style="margin-top: 20px">
                 <b-button variant="success" class="mr-2" @click="add"
                   >Thêm</b-button
                 >
@@ -82,20 +90,31 @@
 
 <script>
 import { HTTP } from "@/api/https";
+import moment from "moment";
 export default {
   name: "role-management",
   components: {
     HTTP
   },
+  filters: {
+    formatDate: function(value) {
+      if (value) {
+        return moment(String(value)).format("YYYY/MM/DD hh:mm:ss");
+      }
+    }
+  },
   data() {
     return {
       delFlg: "",
-      categoryModel: {},
+      categoryModel: {
+        style: null
+      },
       delOption: [
         { value: "", text: "All" },
         { value: 0, text: "Active" },
         { value: 1, text: "Inactive" }
       ],
+      styleOption: [],
       items: [],
       fields: [
         {
@@ -111,8 +130,12 @@ export default {
           label: "Tên không dấu"
         },
         {
+          key: "style",
+          label: "Style"
+        },
+        {
           key: "ngaytao",
-          label: "Ngày"
+          label: "Ngày",
         },
         {
           key: "trangthai",
@@ -126,9 +149,31 @@ export default {
     };
   },
   created() {
-    this.search();
+    // this.search();
+    this.init();
   },
   methods: {
+    init() {
+      HTTP.get("/category/init")
+        .then(this.handleInitSuccess)
+        .catch(this.handleInitError);
+    },
+
+    handleInitSuccess(res) {
+      let style = res.data.styles;
+      this.styleOption.push({
+        value: null,
+        text: 'Select style...'
+      });
+      style.forEach(element => {
+        let item = {
+          value: element.name,
+          text: element.name
+        };
+        this.styleOption.push(item);
+      });
+    },
+
     search() {
       let param = {
         del_flg: this.delFlg
@@ -140,10 +185,10 @@ export default {
       if (this.categoryModel.tencd === undefined) {
         return;
       }
-      let tenkd_tem = this.categoryModel.tencd
-      tenkd_tem = this.removeAccents(tenkd_tem)
-      tenkd_tem = tenkd_tem.toLowerCase()
-      let tem = tenkd_tem.replace(/ /g, '-');
+      let tenkd_tem = this.categoryModel.tencd;
+      tenkd_tem = this.removeAccents(tenkd_tem);
+      tenkd_tem = tenkd_tem.toLowerCase();
+      let tem = tenkd_tem.replace(/ /g, "-");
       this.categoryModel.tenkd = tem;
 
       HTTP.post("category/add", this.categoryModel).then(this.handleAddSuccess);
@@ -164,9 +209,7 @@ export default {
     },
 
     update() {
-      if (
-        this.categoryModel.tencd === undefined
-      ) {
+      if (this.categoryModel.tencd === undefined) {
         return;
       }
       HTTP.post("category/update", this.categoryModel).then(
@@ -212,9 +255,9 @@ export default {
       }
       let checked = event.target.checked;
       this.categoryModel.sudung = checked ? 1 : 0;
-    }, 
+    },
     removeAccents(str) {
-      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
   }
 };

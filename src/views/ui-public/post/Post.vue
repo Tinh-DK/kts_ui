@@ -13,7 +13,7 @@
             <h2>{{content.tencd}}</h2>
             <div class="post-meta d-flex mb-5">
               <div class="bio-pic mr-3">
-                <img src="@/assets/images/person_1.jpg" alt="Image" class="img-fluidid" />
+                <img src="@/assets/images/faces/face3.jpg" alt="Image" class="img-fluidid" />
               </div>
               <div class="vcard">
                 <span class="d-block">
@@ -60,11 +60,11 @@
               <div class="post-author">
                 <div class="media">
                   <div class="media-left">
-                    <img class="media-object" src="@/assets/img/author.png" alt />
+                    <img class="media-object" src="@/assets/images/faces/face3.jpg" alt />
                   </div>
                   <div class="media-body">
                     <div class="media-heading">
-                      <h3>John Doe</h3>
+                      <h4>{{content.nguoitao}}</h4>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <ul class="author-social">
@@ -97,21 +97,20 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <div class="section-title">
-                      <h2>Bài viết liên quan</h2>
-                    </div>
+                    <h4 style="border-bottom: 1px solid #F4f4f9;">Bài Viết Liên Quan</h4>
                   </div>
 
                   <!-- post -->
                   <div class="col-md-3" v-for="post in popularArr" :key="post.id">
                     <div class="post">
                       <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
-                        <img :src="post.hinhanh" alt />
+                        <img :src="post.hinhanh" style="height: 100px;" />
                       </a>
                       <div class="post-body">
                         <div class="post-meta">
-                          <span class="d-block">
+                          <span class="d-block text-custom">
                             <a
+                              :title="post.loaitin"
                               class="post-category"
                               :class="post.style"
                               v-bind:href="'/category/'+ post.loaitinkd"
@@ -120,6 +119,40 @@
                           <span class="post-date">{{post.ngaytao}}</span>
                         </div>
                         <h3 class="post-title">
+                          <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="site-section">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4 style="border-bottom: 1px solid #F4f4f9;">Có Thể Bạn Quan Tâm</h4>
+                  </div>
+
+                  <!-- post -->
+                  <div class="col-md-3" v-for="post in popularArr" :key="post.id">
+                    <div class="post">
+                      <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
+                        <img :src="post.hinhanh" style="height: 100px;" />
+                      </a>
+                      <div class="post-body">
+                        <div class="post-meta">
+                          <span class="d-block text-custom">
+                            <a
+                              class="post-category"
+                              :class="post.style"
+                              :title="post.loaitin"
+                              v-bind:href="'/category/'+ post.loaitinkd"
+                            >{{post.loaitin}}</a>
+                          </span>
+                          <span class="post-date">{{post.ngaytao}}</span>
+                        </div>
+                        <h3 class="post-title container-custom">
                           <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                         </h3>
                       </div>
@@ -143,14 +176,14 @@
 
             <!-- post widget -->
             <div class="aside-widget">
-              <div class="section-title">
-                <h2>Trending</h2>
+              <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 20px">
+                <h4 style="margin-bottom: 10px">BÀI VIẾT PHỔ BIẾN</h4>
               </div>
               <div class="trend-entry d-flex" v-for="(post, index) in popularArr" :key="post.id">
                 <div class="number align-self-start">0{{index + 1}}</div>
                 <div class="trend-contents">
                   <h2>
-                    <a href="blog-single.html">{{post.tencd}}</a>
+                    <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                   </h2>
                   <div class="post-meta">
                     <span class="d-block">
@@ -166,12 +199,12 @@
 
             <!-- post widget -->
             <div class="aside-widget">
-              <div class="section-title">
-                <h2>Featured Posts</h2>
+              <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 20px">
+                <h4 style="margin-bottom: 10px">BÀI VIẾT CÙNG CHUYÊN MỤC</h4>
               </div>
               <div class="post post-thumb" v-for="post in theloaiArr" :key="post.id">
-                <a class="post-img" href="blog-post.html">
-                  <img :src="post.hinhanh" alt />
+                <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
+                  <img :src="post.hinhanh" style="max-height: 250px;" />
                 </a>
                 <div class="post-body">
                   <div class="post-meta">
@@ -183,7 +216,7 @@
                     <span class="post-date">{{post.ngaytao}}</span>
                   </div>
                   <h3 class="post-title">
-                    <a href="blog-post.html">{{post.tencd}}</a>
+                    <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                   </h3>
                 </div>
               </div>
@@ -192,13 +225,17 @@
 
             <!-- catagories -->
             <div class="aside-widget">
-              <div class="section-title">
-                <h2>Catagories</h2>
+              <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 10px">
+                <h4>CHUYÊN MỤC PHỔ BIẾN</h4>
               </div>
               <div class="category-widget">
                 <ul>
                   <li v-for="item in catagories" :key="item.id">
-                    <a v-bind:href="'/category/'+ item.loaitinkd" :class="item.style">
+                    <a
+                      v-bind:href="'/category/'+ item.loaitinkd"
+                      :class="item.style"
+                      style="font-weight: 400;"
+                    >
                       {{item.theloai}}
                       <span class="category-custom">{{item.soluong}}0</span>
                     </a>
@@ -210,10 +247,16 @@
 
             <!-- tags -->
             <div class="aside-widget">
+              <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 10px">
+                <h4>CHỦ ĐỀ</h4>
+              </div>
               <div class="tags-widget">
                 <ul>
                   <li v-for="item in loaitinArr" :key="item.id">
-                    <a v-bind:href="'/category/'+ item.tenkd">{{item.tencd}}</a>
+                    <a
+                      v-bind:href="'/category/'+ item.tenkd"
+                      style="font-weight: 400;"
+                    >{{item.tencd}}</a>
                   </li>
                 </ul>
               </div>
