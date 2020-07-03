@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="section-title">
+            <div class="section-title category-custom-style">
               <h2>BÀI VIẾT MỚI</h2>
             </div>
           </div>
@@ -44,7 +44,12 @@
           <div class="col-md-3" v-for="post in recentArr" :key="post.id">
             <div class="post">
               <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
-                <img :src="post.hinhanh" :alt="post.tencd" :title="post.tencd" style="max-height: 150px;"/>
+                <img
+                  :src="post.hinhanh"
+                  :alt="post.tencd"
+                  :title="post.tencd"
+                  style="max-height: 150px;"
+                />
               </a>
               <div class="post-body">
                 <div class="post-meta text-custom">
@@ -73,7 +78,7 @@
           <div class="col-lg-8">
             <div class="row">
               <div class="col-12">
-                <div class="section-title">
+                <div class="section-title category-custom-style">
                   <h2>BÀI VIẾT CHỌN LỌC</h2>
                 </div>
               </div>
@@ -134,7 +139,7 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="section-title">
+            <div class="section-title category-custom-style">
               <h2>BÀI VIẾT NỖI BẬT</h2>
             </div>
             <div class="trend-entry d-flex" v-for="(post, index) in trendingArr" :key="post.id">
@@ -202,7 +207,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="post-meta text-custom section-title">
-                    <span class="d-block category-custom-style">
+                    <span class="d-block">
                       <span class="post-category" :class="post.style">{{post.name}}</span>
                     </span>
                   </div>
@@ -234,7 +239,12 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="post-entry-2 d-flex" v-for="(subpost) in post.data" :key="subpost.id">
+                  <div
+                    class="post-entry-2 d-flex"
+                    v-for="(subpost, index) in post.data"
+                    :key="subpost.id"
+                    v-if="index > 0"
+                  >
                     <div class="thumbnail" :style="subpost.imgbg"></div>
                     <div class="contents">
                       <h2>
@@ -402,5 +412,9 @@ export default {
   &.backend {
     color: #ff8700 !important;
   }
+}
+.category-custom-style {
+  border-bottom: 1px dashed #dee2e6;
+  line-height: 2.5;
 }
 </style>

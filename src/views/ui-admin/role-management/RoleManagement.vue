@@ -9,7 +9,7 @@
               <b-form-group hidden>
                 <b-form-input type="text" v-model="roleModel.id"></b-form-input>
               </b-form-group>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <b-form-group label="Tên quyền 1" label-for="input14">
                   <b-form-input
                     type="text"
@@ -18,7 +18,7 @@
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <b-form-group label="Tên quyền 2" label-for="input14">
                   <b-form-input
                     type="text"
@@ -27,7 +27,7 @@
                   ></b-form-input>
                 </b-form-group>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-1">
                 <b-form-group label="Sử dụng" label-for="input14">
                   <input
                     type="checkbox"
@@ -37,32 +37,12 @@
                   />
                 </b-form-group>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-3" style="margin-top: 22px;">
                 <b-button variant="success" class="mr-2" @click="add"
                   >Thêm</b-button
                 >
                 <b-button variant="info" class="mr-2" @click="update"
                   >Cập nhật</b-button
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <b-form-group label="">
-                  <b-form-select :options="delOption" v-model="delFlg" />
-                </b-form-group>
-              </div>
-              <div class="col-md-4">
-                <b-button variant="primary" class="btn-fw" @click="search"
-                  >Tìm kiếm</b-button
                 >
               </div>
             </div>
@@ -147,10 +127,7 @@ export default {
   },
   methods: {
     search() {
-      let param = {
-        del_flg: this.delFlg
-      };
-      HTTP.post("role/search", param).then(this.handleSearchSuccess);
+      HTTP.post("role/search").then(this.handleSearchSuccess);
     },
 
     add() {
@@ -229,35 +206,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.table-responsive {
-  border-top: 1px solid #f3f3f3;
-  .table {
-    thead {
-      th {
-        background-color: slategray;
-        border-bottom: slategray;
-        color: #ffffff;
-        text-align: center !important;
-        position: sticky;
-        top: 0px;
-        z-index: 1000;
-      }
-    }
-    tbody {
-      td {
-        &:hover {
-          cursor: pointer;
-        }
-        &:nth-child(1),
-        &:nth-child(4),
-        &:nth-child(5),
-        &:nth-child(6) {
-          text-align: center !important;
-        }
-      }
-    }
-  }
-}
-</style>

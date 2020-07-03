@@ -12,10 +12,19 @@
               <div class="col-md-4">
                 <b-form-group label="Tên thể loại" label-for="input14">
                   <b-form-input
+                    style="height: 38px;"
                     type="text"
                     v-model="categoryModel.tencd"
                     placeholder="Nhập tên thể loại..."
                   ></b-form-input>
+                </b-form-group>
+              </div>
+              <div class="col-md-2">
+                <b-form-group horizontal label="Style" label-for="input14">
+                  <b-form-select
+                    v-model="categoryModel.style"
+                    :options="styleOption"
+                  />
                 </b-form-group>
               </div>
               <div class="col-md-1">
@@ -28,40 +37,12 @@
                   />
                 </b-form-group>
               </div>
-              <div class="col-md-2">
-                <b-form-group horizontal label="Danh mục" label-for="input14">
-                  <b-form-select
-                    v-model="categoryModel.style"
-                    :options="styleOption"
-                  />
-                </b-form-group>
-              </div>
-              <div class="col-md-4" style="margin-top: 20px">
+              <div class="col-md-4" style="margin-top: 22px">
                 <b-button variant="success" class="mr-2" @click="add"
                   >Thêm</b-button
                 >
                 <b-button variant="info" class="mr-2" @click="update"
                   >Cập nhật</b-button
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <b-form-group label="">
-                  <b-form-select :options="delOption" v-model="delFlg" />
-                </b-form-group>
-              </div>
-              <div class="col-md-4">
-                <b-button variant="primary" class="btn-fw" @click="search"
-                  >Tìm kiếm</b-button
                 >
               </div>
             </div>
@@ -135,7 +116,7 @@ export default {
         },
         {
           key: "ngaytao",
-          label: "Ngày",
+          label: "Ngày"
         },
         {
           key: "trangthai",
@@ -149,8 +130,8 @@ export default {
     };
   },
   created() {
-    // this.search();
     this.init();
+    this.search();
   },
   methods: {
     init() {
@@ -163,7 +144,7 @@ export default {
       let style = res.data.styles;
       this.styleOption.push({
         value: null,
-        text: 'Select style...'
+        text: "Select style..."
       });
       style.forEach(element => {
         let item = {
@@ -175,10 +156,7 @@ export default {
     },
 
     search() {
-      let param = {
-        del_flg: this.delFlg
-      };
-      HTTP.post("category/search", param).then(this.handleSearchSuccess);
+      HTTP.post("category/search").then(this.handleSearchSuccess);
     },
 
     add() {
@@ -262,7 +240,6 @@ export default {
   }
 };
 </script>
-
 <style lang="scss">
 .table-responsive {
   border-top: 1px solid #f3f3f3;
@@ -282,12 +259,6 @@ export default {
       td {
         &:hover {
           cursor: pointer;
-        }
-        &:nth-child(1),
-        &:nth-child(4),
-        &:nth-child(5),
-        &:nth-child(6) {
-          text-align: center !important;
         }
       }
     }

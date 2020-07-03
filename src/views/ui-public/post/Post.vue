@@ -20,7 +20,7 @@
                   <a href="#">{{content.nguoitao}}</a> in
                   <a href="#">{{content.loaitin}}</a>
                 </span>
-                <span class="date-read">{{content.ngaytao}}</span>
+                <span class="date-read">{{content.ngaytao | formatDate}}</span>
               </div>
             </div>
             <div class="section-row sticky-container">
@@ -116,7 +116,7 @@
                               v-bind:href="'/category/'+ post.loaitinkd"
                             >{{post.loaitin}}</a>
                           </span>
-                          <span class="post-date">{{post.ngaytao}}</span>
+                          <span class="post-date">{{post.ngaytao | formatDate}}</span>
                         </div>
                         <h3 class="post-title">
                           <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
@@ -150,9 +150,9 @@
                               v-bind:href="'/category/'+ post.loaitinkd"
                             >{{post.loaitin}}</a>
                           </span>
-                          <span class="post-date">{{post.ngaytao}}</span>
+                          <span class="post-date">{{post.ngaytao | formatDate}}</span>
                         </div>
-                        <h3 class="post-title container-custom">
+                        <h3 class="post-title">
                           <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                         </h3>
                       </div>
@@ -165,7 +165,7 @@
           </div>
 
           <!-- aside -->
-          <div class="col-md-4">
+          <div class="col-md-4" style="padding-left: 50px;">
             <!-- ad -->
             <div class="aside-widget text-center">
               <a href="#" style="display: inline-block;margin: auto;">
@@ -190,7 +190,7 @@
                       <a href="#">{{post.nguoitao}}</a> in
                       <a v-bind:href="'/category/'+ post.loaitinkd">{{post.loaitin}}</a>
                     </span>
-                    <span class="date-read">{{post.ngaytao}}</span>
+                    <span class="date-read">{{post.ngaytao | formatDate}}</span>
                   </div>
                 </div>
               </div>
@@ -213,7 +213,7 @@
                       :class="post.style"
                       v-bind:href="'/category/'+ post.loaitinkd"
                     >{{post.loaitin}}</a>
-                    <span class="post-date">{{post.ngaytao}}</span>
+                    <span class="post-date">{{post.ngaytao | formatDate}}</span>
                   </div>
                   <h3 class="post-title">
                     <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
@@ -261,6 +261,18 @@
                 </ul>
               </div>
             </div>
+            <div class="aside-widget">
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBKB11026789%2F&tabs=272&width=340&height=300px&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1130836606940717"
+                width="340"
+                height="300px"
+                style="border:none;overflow:hidden"
+                scrolling="no"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></iframe>
+            </div>
             <!-- /tags -->
             <!-- /archive -->
           </div>
@@ -274,11 +286,19 @@
 </template>
 <script>
 import { HTTP } from "@/api/https";
+import moment from "moment";
 import CommentPost from "../../../components/comment/CommentPost";
 export default {
   name: "Post",
   components: {
     CommentPost
+  },
+  filters: {
+    formatDate: function(value) {
+      if (value) {
+        return moment(String(value)).format("YYYY/MM/DD hh:mm:ss");
+      }
+    }
   },
   data: function() {
     return {

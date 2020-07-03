@@ -64,26 +64,6 @@
                 >
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-4">
-                <b-form-group label="">
-                  <b-form-select :options="delOption" v-model="usingFlg" />
-                </b-form-group>
-              </div>
-              <div class="col-md-4">
-                <b-button variant="primary" class="btn-fw" @click="search"
-                  >Tìm kiếm</b-button
-                >
-              </div>
-            </div>
             <b-table bordered hover responsive :items="items" :fields="fields">
               <template v-slot:cell(trangthai)="data">
                 <label v-if="data.item.sudung === 1" class="badge badge-success"
@@ -169,7 +149,8 @@ export default {
     };
   },
   created() {
-    this.init();
+    this.init()
+    this.search()
   },
   methods: {
     init() {
@@ -192,10 +173,7 @@ export default {
     },
 
     search() {
-      let param = {
-        usingFlg: this.usingFlg
-      };
-      HTTP.post("user/search", param).then(this.handleSearchSuccess);
+      HTTP.post("user/search").then(this.handleSearchSuccess);
     },
 
     add() {
@@ -294,7 +272,19 @@ export default {
   }
 };
 </script>
-
+<style lang="css">
+  .custom-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #495057;
+    vertical-align: middle;
+  }
+</style>
 <style lang="scss">
 .table-responsive {
   border-top: 1px solid #f3f3f3;
@@ -315,27 +305,8 @@ export default {
         &:hover {
           cursor: pointer;
         }
-        &:nth-child(1),
-        &:nth-child(4),
-        &:nth-child(5),
-        &:nth-child(6) {
-          text-align: center !important;
-        }
       }
     }
   }
-}
-</style>
-<style lang="css">
-.custom-select {
-  display: inline-block;
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-  font-size: 0.9rem;
-  font-weight: 400;
-  line-height: 1;
-  color: #495057;
-  vertical-align: middle;
 }
 </style>

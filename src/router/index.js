@@ -73,6 +73,11 @@ export default new Router({
           name: 'category',
           component: Category
         },
+        {
+          path: '/category',
+          name: 'category',
+          component: Category
+        },
       ]
     },
     {

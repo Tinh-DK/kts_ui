@@ -620,7 +620,7 @@ textarea.input {
     color: #eceef2;
 }
 .post.post-thumb .post-title {
-    font-size: 22px;
+    font-size: 16px;
 }
 .post.post-thumb .post-title > a {
     color: #FFF;
@@ -1014,4 +1014,10 @@ textarea.input {
     .post.post-row .post-body p {
         display:none;
    }
+}
+
+
+pre {
+    background-color: #f8f8f8;
+    border-radius: 5px;
 }

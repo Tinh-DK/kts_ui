@@ -148,29 +148,3 @@ export default {
   height: 50px;
 }
 </style>
-<style lang="scss">
-.table-responsive {
-  .table {
-    thead {
-      th {
-        text-align: center !important;
-      }
-    }
-    tbody {
-      td {
-        &:hover {
-          cursor: pointer;
-        }
-        // &:nth-child(1),
-        // &:nth-child(2),
-        // &:nth-child(3),
-        // &:nth-child(7),
-        // &:nth-child(8),
-        // &:nth-child(9) {
-        //   text-align: center !important;
-        // }
-      }
-    }
-  }
-}
-</style>

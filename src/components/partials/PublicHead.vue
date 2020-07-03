@@ -49,7 +49,7 @@
                 </li>
                 <li v-for="item in menuArr" :key="item.id">
                   <a
-                    v-bind:href="'/category/'+ item.tenkd"
+                    v-bind:href="'/category?name='+ item.tenkd"
                     class="nav-link text-left"
                   >{{item.tencd}}</a>
                 </li>
