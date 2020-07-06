@@ -1106,7 +1106,7 @@ html {
     .post-entry-1 h2, .post-entry-2 h2 {
       font-size: 20px; }
       .post-entry-1 h2 a, .post-entry-2 h2 a {
-        color: #000; }
+        color: rgba(0,0,0,0.8) }
   
   .post-entry-2 {
     font-size: .9rem; }
@@ -1132,7 +1132,7 @@ html {
     .trend-entry .trend-contents h2 {
       font-size: 16px; }
       .trend-entry .trend-contents h2 a {
-        color: #000; }
+        color: rgba(0,0,0,0.8) }
   
   .caption {
     font-size: .9rem;
@@ -1168,7 +1168,7 @@ html {
     .half-post-entry .contents h2 {
       font-size: 26px; }
       .half-post-entry .contents h2 a {
-        color: #000; }
+        color: rgba(0,0,0,0.8) }
   
   .more {
     color: #8bc34a;

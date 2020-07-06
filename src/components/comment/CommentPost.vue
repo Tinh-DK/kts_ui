@@ -2,7 +2,7 @@
   <div>
     <div class="section-row">
       <div class="add-comment" v-if="!displayReply">
-        <h3>Bình Luận</h3>
+        <div class="post_comment_title">Post Comment</div>
         <add-comment :post="postid" @on-add="handleAdd"></add-comment>
       </div>
       <div class="post-comments">
@@ -20,7 +20,12 @@
             <div class="media-heading">
               <h4>{{comment.nguoitao}}</h4>
               <span class="time">{{comment.ngaytao}}</span>
-              <a class="reply" @click="reply(comment.id, comment.idbaiviet, index)">Reply</a>
+              <!-- <a class="reply_button" >Reply</a> -->
+              <button
+                type="button"
+                class="reply_button ml-auto"
+                @click="reply(comment.id, comment.idbaiviet, index)"
+              >Reply</button>
             </div>
             <p>{{comment.noidung}}</p>
             <!-- comment -->
@@ -32,10 +37,11 @@
                 <div class="media-heading">
                   <h4>{{sub.nguoitao}}</h4>
                   <span class="time">{{sub.ngaytao}}</span>
-                  <a
-                    class="reply"
+                  <button
+                    type="button"
+                    class="reply_button ml-auto"
                     @click="subreply(index, sub.id, comment.id, comment.idbaiviet, subindex)"
-                  >Reply</a>
+                  >Reply</button>
                 </div>
                 <p>{{sub.noidung}}</p>
                 <div class="add-comment" v-if="displayReply && subindex === isubIndex">
@@ -103,5 +109,27 @@ export default {
 a:hover {
   cursor: pointer;
   color: blue;
+}
+.reply_button {
+  width: 76px;
+  height: 28px;
+  background: rgba(45, 223, 128, 0.1);
+  color: rgba(45, 223, 128, 1);
+  border: none;
+  outline: none;
+  border-radius: 18px;
+  cursor: pointer;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+  font-size: 12px;
+}
+.post_comment_title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 700;
 }
 </style>

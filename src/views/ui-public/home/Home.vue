@@ -48,12 +48,12 @@
                   :src="post.hinhanh"
                   :alt="post.tencd"
                   :title="post.tencd"
-                  style="max-height: 150px;"
+                  style="max-height: 150px; border-radius: 0.25em;"
                 />
               </a>
               <div class="post-body">
                 <div class="post-meta text-custom">
-                  <span class="d-block">
+                  <span>
                     <a
                       class="post-category"
                       :class="post.style"
@@ -124,7 +124,7 @@
                       <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                     </h2>
                     <div class="post-meta text-custom">
-                      <span class="d-block">
+                      <span>
                         <a
                           class="post-category"
                           :class="post.style"
@@ -149,7 +149,7 @@
                   <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h2>
                 <div class="post-meta text-custom">
-                  <span class="d-block">
+                  <span>
                     <a
                       class="post-category"
                       :class="post.style"
@@ -185,7 +185,7 @@
             </h2>
             <p class="mb-3">{{editorArr[editorArr.length - 1].tomtat}}</p>
             <div class="post-meta text-custom">
-              <span class="d-block">
+              <span>
                 <a
                   class="post-category"
                   :class="editorArr[editorArr.length - 1].style"
@@ -207,7 +207,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="post-meta text-custom section-title">
-                    <span class="d-block">
+                    <span>
                       <span class="post-category" :class="post.style">{{post.name}}</span>
                     </span>
                   </div>
@@ -251,7 +251,7 @@
                         <a v-bind:href="'/post/'+ subpost.tenkd">{{subpost.tencd}}</a>
                       </h2>
                       <div class="post-meta text-custom">
-                        <span class="d-block">
+                        <span>
                           <a
                             class="post-category"
                             :class="subpost.style"
@@ -278,7 +278,7 @@
                   <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
                 </h2>
                 <div class="post-meta text-custom">
-                  <span class="d-block">
+                  <span>
                     <a
                       class="post-category"
                       :class="post.style"
@@ -296,25 +296,6 @@
               <a href="#" style="display: inline-block;margin: auto;">
                 <img class="img-responsive" src="@/assets/img/ad-1.jpg" alt />
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section subscribe bg-light">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-5 mr-auto">
-            <h2>Đăng ký nhận thông báo</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aspernatur ut at quae omnis pariatur obcaecati possimus nisi ea iste!</p>
-          </div>
-          <div class="col-md-6 ml-auto">
-            <div class="d-flex">
-              <input type="email" class="form-control" placeholder="Enter your email" />
-              <button type="submit" class="btn btn-secondary">
-                <span class="icon-paper-plane"></span>
-              </button>
             </div>
           </div>
         </div>
@@ -344,7 +325,7 @@ export default {
   filters: {
     formatDate: function(value) {
       if (value) {
-        return moment(String(value)).format("YYYY/MM/DD hh:mm:ss");
+        return moment(String(value)).format("DD/MM/YYYY");
       }
     }
   },

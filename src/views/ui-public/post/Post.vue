@@ -7,21 +7,34 @@
         <div class="row">
           <!-- Post content -->
           <div class="col-md-8">
-            <p class="mb-5">
+            <p class="mb-3">
               <img :src="content.hinhanh" alt="Image" class="img-fluid" />
             </p>
             <h2>{{content.tencd}}</h2>
-            <div class="post-meta d-flex mb-5">
+            <div class="post-meta d-flex mb-3">
               <div class="bio-pic mr-3">
                 <img src="@/assets/images/faces/face3.jpg" alt="Image" class="img-fluidid" />
               </div>
               <div class="vcard">
-                <span class="d-block">
+                <span class>
                   <a href="#">{{content.nguoitao}}</a> in
                   <a href="#">{{content.loaitin}}</a>
                 </span>
+              </div>
+              <div class="post_share ml-sm-auto">
+                <span>
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                  {{content.soluotxem == null ? 0 : content.soluotxem}}
+                </span>
                 <span class="date-read">{{content.ngaytao | formatDate}}</span>
               </div>
+            </div>
+            <div class="post_tags">
+              <ul>
+                <li class="post_tag" v-for="(name, index) in content.tag" :key="index">
+                  <a href="#">{{name}}</a>
+                </li>
+              </ul>
             </div>
             <div class="section-row sticky-container">
               <div class="main-post" v-html="content.noidung"></div>
@@ -97,18 +110,18 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <h4 style="border-bottom: 1px solid #F4f4f9;">Bài Viết Liên Quan</h4>
+                    <h4 style="border-bottom: 1px solid #F4f4f9; line-height: 2;">Bài Viết Liên Quan</h4>
                   </div>
 
                   <!-- post -->
-                  <div class="col-md-3" v-for="post in popularArr" :key="post.id">
-                    <div class="post">
+                  <div class="col-md-4" v-for="post in popularArr" :key="post.id">
+                    <div class="post" style="border-radius: 0.25em; background-color: #f7f7f7">
                       <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
-                        <img :src="post.hinhanh" style="height: 100px;" />
+                        <img :src="post.hinhanh" style="height: 100px;" class="post-img-custom" />
                       </a>
-                      <div class="post-body">
+                      <div class="post-body" style="padding: 10px;">
                         <div class="post-meta">
-                          <span class="d-block text-custom">
+                          <span class="text-custom">
                             <a
                               :title="post.loaitin"
                               class="post-category"
@@ -131,18 +144,20 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <h4 style="border-bottom: 1px solid #F4f4f9;">Có Thể Bạn Quan Tâm</h4>
+                    <h4
+                      style="border-bottom: 1px solid #F4f4f9; line-height: 2;"
+                    >Có Thể Bạn Quan Tâm</h4>
                   </div>
 
                   <!-- post -->
-                  <div class="col-md-3" v-for="post in popularArr" :key="post.id">
-                    <div class="post">
+                  <div class="col-md-4" v-for="post in popularArr" :key="post.id">
+                    <div class="post" style="border-radius: 0.25em; background-color: #f7f7f7">
                       <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
-                        <img :src="post.hinhanh" style="height: 100px;" />
+                        <img :src="post.hinhanh" style="height: 100px;" class="post-img-custom" />
                       </a>
-                      <div class="post-body">
+                      <div class="post-body" style="padding: 10px;">
                         <div class="post-meta">
-                          <span class="d-block text-custom">
+                          <span class="text-custom">
                             <a
                               class="post-category"
                               :class="post.style"
@@ -177,10 +192,24 @@
             <!-- post widget -->
             <div class="aside-widget">
               <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 20px">
-                <h4 style="margin-bottom: 10px">BÀI VIẾT PHỔ BIẾN</h4>
+                <h4 style="margin-bottom: 10px">BÀI VIẾT LIÊN QUAN</h4>
               </div>
-              <div class="trend-entry d-flex" v-for="(post, index) in popularArr" :key="post.id">
-                <div class="number align-self-start">0{{index + 1}}</div>
+              <div
+                class="trend-entry d-flex"
+                v-for="post in theloaiArr"
+                :key="post.id"
+                style="border-bottom: 1px dashed #eceef2;"
+              >
+                <div class="side_post_image">
+                  <div>
+                    <img
+                      :src="post.hinhanh"
+                      :alt="post.tencd"
+                      :title="post.tencd"
+                      style="width: 90px; height: 70px; border-radius: 5px; margin-right: 20px;"
+                    />
+                  </div>
+                </div>
                 <div class="trend-contents">
                   <h2>
                     <a v-bind:href="'/post/'+ post.tenkd">{{post.tencd}}</a>
@@ -190,7 +219,7 @@
                       <a href="#">{{post.nguoitao}}</a> in
                       <a v-bind:href="'/category/'+ post.loaitinkd">{{post.loaitin}}</a>
                     </span>
-                    <span class="date-read">{{post.ngaytao | formatDate}}</span>
+                    <span class="date-read">{{post.ngaytao | formatTime}}</span>
                   </div>
                 </div>
               </div>
@@ -200,11 +229,11 @@
             <!-- post widget -->
             <div class="aside-widget">
               <div style="border-bottom: 1px solid #F4f4f9; margin-bottom: 20px">
-                <h4 style="margin-bottom: 10px">BÀI VIẾT CÙNG CHUYÊN MỤC</h4>
+                <h4 style="margin-bottom: 10px">BÀI VIẾT PHỔ BIẾN</h4>
               </div>
-              <div class="post post-thumb" v-for="post in theloaiArr" :key="post.id">
+              <div class="post post-thumb" v-for="post in popularArr" :key="post.id">
                 <a class="post-img" v-bind:href="'/post/'+ post.tenkd">
-                  <img :src="post.hinhanh" style="max-height: 250px;" />
+                  <img :src="post.hinhanh" style="max-height: 250px; border-radius: 0.25rem" />
                 </a>
                 <div class="post-body">
                   <div class="post-meta">
@@ -296,7 +325,12 @@ export default {
   filters: {
     formatDate: function(value) {
       if (value) {
-        return moment(String(value)).format("YYYY/MM/DD hh:mm:ss");
+        return moment(String(value)).format("DD/MM/YYYY");
+      }
+    },
+    formatTime: function(value) {
+      if (value) {
+        return moment(String(value)).format("DD/MM/YYYY hh:mm:ss");
       }
     }
   },
@@ -330,6 +364,16 @@ export default {
         }
         this.content = post[0];
 
+        let tag = this.content.tag
+        if (tag !== null && tag !== undefined) {
+          let tagArr = tag.split(",");
+          this.content.tag = tagArr
+        }
+        else {
+          this.content.tag = []
+        }
+
+
         // CÙNG CHUYÊN MỤC
         this.theloaiArr = datapost.post_category;
 
@@ -348,16 +392,48 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.author-custom {
-  font-weight: 400;
-}
-.category-custom {
-  font-weight: 400;
-  &.fontend {
-    background-color: #0078ff !important;
+  .author-custom {
+    font-weight: 400;
   }
-  &.backend {
-    background-color: #ff8700 !important;
+  .category-custom {
+    font-weight: 400;
+    &.fontend {
+      background-color: #0078ff !important;
+    }
+    &.backend {
+      background-color: #ff8700 !important;
+    }
   }
-}
+  .post_tag {
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    border: solid 1px #d7d7d7;
+    border-radius: 3px;
+    background: transparent;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+    margin-bottom: 30px;
+    margin-right: 5px;
+    text-transform: uppercase;
+  }
+  .post_tag a {
+    display: block;
+    line-height: 22px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: rgba(0,0,0,0.5);
+    font-weight: 450;
+
+    &:hover {
+      background: #d7d7d7;
+    }
+  }
 </style>

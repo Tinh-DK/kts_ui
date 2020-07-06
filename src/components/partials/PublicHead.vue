@@ -11,7 +11,7 @@
               <span class="fa fa-twitter"></span>
             </a>
             <a href="#" class="d-inline-block p-3">
-              <span class="fa fa-instagram"></span>
+              <span class="fa fa-google-plus"></span>
             </a>
           </div>
         </div>
