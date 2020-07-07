@@ -8,23 +8,22 @@
 export default{
   name: 'app',
   created() {
-    // const currentPath = this.$router.history.current.path;
+    const currentPath = this.$router.history.current.path;
+    if (currentPath === '/') {
+      return
+    }
 
-    // if (currentPath === '/') {
-    //   return
-    // }
-
-    // if (sessionStorage.getItem('authenticated') !== 'true') {
-    //   this.$router.push('/admin');
-    // }
-
-    // if (currentPath === '/admin') {
-    //   this.$router.push('/admin/dashboard');
-    // }
+    if (sessionStorage.getItem('authenticated') !== 'true') {
+      this.$router.push('/admin');
+    }
+    else if (sessionStorage.getItem('authenticated') === 'true') {
+      this.$router.push(currentPath);
+    }
   },
 }
 </script>
 <style>
+@import url("https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css");
 @import "../node_modules/mdi/css/materialdesignicons.min.css";
 @import "../node_modules/flag-icon-css/css/flag-icon.min.css";
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
