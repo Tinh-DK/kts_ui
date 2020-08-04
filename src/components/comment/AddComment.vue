@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 .input-custom {
   display: inline-block;
-  width: calc(50% - 15px);
+  width: 100%;
   height: 42px;
   border: none;
   outline: none;
@@ -83,7 +83,7 @@ export default {
 }
 .post_comment_form_container {
   width: 100%;
-  background: #f7f7f7;
+  border: 1px solid #f7f7f7;
   border-radius: 6px;
   padding-left: 30px;
   padding-right: 30px;

@@ -18,7 +18,7 @@
           </div>
           <div class="media-body">
             <div class="media-heading">
-              <h4>{{comment.nguoitao}}</h4>
+              <span class="time">{{comment.nguoitao}}</span>
               <span class="time">{{comment.ngaytao}}</span>
               <!-- <a class="reply_button" >Reply</a> -->
               <button
@@ -27,7 +27,8 @@
                 @click="reply(comment.id, comment.idbaiviet, index)"
               >Reply</button>
             </div>
-            <p>{{comment.noidung}}</p>
+            <!-- <p>{{comment.noidung}}</p> -->
+            <div class="main-post" v-html="comment.noidung"></div>
             <!-- comment -->
             <div class="media" v-for="(sub, subindex) in comment['sub-comment']" :key="sub.id">
               <div class="media-left">

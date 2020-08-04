@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-lg-4 d-flex">
-          <a href="/" class="site-logo">ĐÀO LÊ MẬN</a>
+          <a href="/" class="site-logo">Company Name</a>
 
           <a
             href="#"

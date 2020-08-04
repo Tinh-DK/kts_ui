@@ -124,6 +124,7 @@ export default {
   },
   created() {
     this.init();
+    this.getListTags();
   },
   methods: {
     addTag(newTag) {
@@ -133,6 +134,12 @@ export default {
       };
       this.options.push(tag);
       this.value.push(tag);
+    },
+
+    getListTags() {
+      HTTP.get('get-list-tag').then(res=>{
+        console.log(res)
+      })
     },
     /**
      * Init page add
@@ -208,7 +215,6 @@ export default {
      * Save post
      */
     save() {
-      debugger
       // Create tên không có dấu
       let tenkd_tem = this.postModel.tencd;
       tenkd_tem = this.removeAccents(tenkd_tem);
